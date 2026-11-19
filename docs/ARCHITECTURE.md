@@ -1,6 +1,6 @@
 # Architecture & System Design: century-radio
 
-## 🏛️ High-Level Design
+## High-Level Design
 Describe the high-level architecture and boundaries of the system.
 
 ```mermaid
@@ -10,9 +10,9 @@ flowchart TD
     API --> Storage[("Data / Persistence")]
 ```
 
-## 📦 Key Components
+## Key Components
 - **Component A**: Description
 - **Component B**: Description
 
-## 🔒 Security & Data Flow
+## Security & Data Flow
 - Outline auth, state management, or security boundaries.

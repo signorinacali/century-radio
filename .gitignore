@@ -48,6 +48,8 @@ htmlcov/
 .parcel-cache/
 .eslintcache/
 .turbo/
+.svelte-kit/
+.vercel/
 .DS_Store
 Thumbs.db
 *.swp
@@ -62,3 +64,5 @@ Thumbs.db
 !.vscode/launch.json
 *.sublime-project
 *.sublime-workspace
+.vercel
+.env*

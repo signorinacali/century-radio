@@ -4,12 +4,12 @@ Welcome to `century-radio`. This document provides vital repository layout, guid
 
 ---
 
-## 🧭 Project Blueprint
+## Project Blueprint
 - **Repository:** `century-radio`
 - **Status:** Initialized
 - **Primary Tech Stack:** <!-- Define main stack here (e.g. TypeScript, Python, Rust, Go) -->
 
-## 🗂️ Directory Map
+## Directory Map
 | Directory | Purpose |
 | :--- | :--- |
 | `src/` | Application logic, components, APIs, and libraries |
@@ -18,7 +18,7 @@ Welcome to `century-radio`. This document provides vital repository layout, guid
 | `scripts/` | Utility, deployment, and task scripts |
 | `.github/` | GitHub Actions CI/CD workflows |
 
-## ⚙️ Standard Commands
+## Standard Commands
 <!-- Maintain exact commands so agents can test their changes reliably -->
 - **Install dependencies:** `<command>`
 - **Start dev mode:** `<command>`
@@ -26,7 +26,7 @@ Welcome to `century-radio`. This document provides vital repository layout, guid
 - **Lint / Typecheck:** `<command>`
 - **Build for release:** `<command>`
 
-## 🛡️ Agent Rules & Conventions
+## Agent Rules & Conventions
 1. **Explore Before Modifying:** Understand existing module architecture before altering or deleting code.
 2. **Preserve Documentation:** Keep existing docstrings and comments intact unless deliberately refactoring.
 3. **No Unchecked Secrets:** Never hardcode secrets, tokens, or private keys. Reference variables via `.env`.

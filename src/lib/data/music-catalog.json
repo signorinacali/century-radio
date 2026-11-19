@@ -1,0 +1,170 @@
+[
+  {
+    "identifier": "78_whispering_paul-whiteman-and-his-ambassador-orchestra_gbia0001053a",
+    "title": "Whispering",
+    "creator": "Paul Whiteman and His Ambassador Orchestra",
+    "year": 1920,
+    "durationSec": 182,
+    "moodTags": ["fireside", "upbeat"]
+  },
+  {
+    "identifier": "78_ain-t-we-got-fun_van-and-schenck_gbia0000434a",
+    "title": "Ain't We Got Fun",
+    "creator": "Van and Schenck",
+    "year": 1921,
+    "durationSec": 175,
+    "moodTags": ["upbeat", "jazz"]
+  },
+  {
+    "identifier": "78_st-louis-blues_bessie-smith_gbia0002321a",
+    "title": "St. Louis Blues",
+    "creator": "Bessie Smith",
+    "year": 1925,
+    "durationSec": 190,
+    "moodTags": ["solemn", "jazz"]
+  },
+  {
+    "identifier": "78_charleston_arthur-gibbs-and-his-gang_gbia0001812a",
+    "title": "Charleston",
+    "creator": "Arthur Gibbs and His Gang",
+    "year": 1923,
+    "durationSec": 178,
+    "moodTags": ["jazz", "upbeat"]
+  },
+  {
+    "identifier": "78_black-bottom-stomp_jelly-roll-morton-s-red-hot-peppers_gbia0003110a",
+    "title": "Black Bottom Stomp",
+    "creator": "Jelly Roll Morton's Red Hot Peppers",
+    "year": 1926,
+    "durationSec": 194,
+    "moodTags": ["jazz", "upbeat", "urgent"]
+  },
+  {
+    "identifier": "78_sugar-foot-stomp_fletcher-henderson-and-his-orchestra_gbia0002741a",
+    "title": "Sugar Foot Stomp",
+    "creator": "Fletcher Henderson and His Orchestra",
+    "year": 1925,
+    "durationSec": 172,
+    "moodTags": ["jazz", "urgent"]
+  },
+  {
+    "identifier": "78_rhapsody-in-blue_paul-whiteman-and-his-concert-orchestra_gbia0000912a",
+    "title": "Rhapsody in Blue (Part 1)",
+    "creator": "Paul Whiteman & George Gershwin",
+    "year": 1924,
+    "durationSec": 258,
+    "moodTags": ["fireside", "solemn"]
+  },
+  {
+    "identifier": "78_east-st-louis-toodle-oo_duke-ellington-and-his-kentucky-club-orchestra_gbia0003402a",
+    "title": "East St. Louis Toodle-Oo",
+    "creator": "Duke Ellington and His Kentucky Club Orchestra",
+    "year": 1927,
+    "durationSec": 185,
+    "moodTags": ["jazz", "solemn"]
+  },
+  {
+    "identifier": "78_dipper-mouth-blues_king-olivers-creole-jazz-band_gbia0001201a",
+    "title": "Dipper Mouth Blues",
+    "creator": "King Oliver's Creole Jazz Band",
+    "year": 1923,
+    "durationSec": 160,
+    "moodTags": ["jazz", "urgent"]
+  },
+  {
+    "identifier": "78_muskrat-ramble_louis-armstrong-and-his-hot-five_gbia0001402a",
+    "title": "Muskrat Ramble",
+    "creator": "Louis Armstrong and His Hot Five",
+    "year": 1926,
+    "durationSec": 182,
+    "moodTags": ["jazz", "upbeat"]
+  },
+  {
+    "identifier": "78_singin-the-blues_frankie-trumbauer-and-his-orchestra-bix-beiderbecke_gbia0002104a",
+    "title": "Singin' the Blues",
+    "creator": "Frankie Trumbauer & Bix Beiderbecke",
+    "year": 1927,
+    "durationSec": 180,
+    "moodTags": ["jazz", "fireside"]
+  },
+  {
+    "identifier": "78_the-prisoner-s-song_vernon-dalhart_gbia0000854a",
+    "title": "The Prisoner's Song",
+    "creator": "Vernon Dalhart",
+    "year": 1924,
+    "durationSec": 195,
+    "moodTags": ["solemn", "fireside"]
+  },
+  {
+    "identifier": "78_valse-in-d-flat-major_sergei-rachmaninoff-chopin_gbia0012582a",
+    "title": "Valse in D Flat Major",
+    "creator": "Sergei Rachmaninoff",
+    "year": 1921,
+    "durationSec": 180,
+    "moodTags": ["fireside", "solemn"]
+  },
+  {
+    "identifier": "78_some-of-these-days_sophie-tucker_gbia0001923a",
+    "title": "Some of These Days",
+    "creator": "Sophie Tucker",
+    "year": 1926,
+    "durationSec": 178,
+    "moodTags": ["upbeat", "jazz"]
+  },
+  {
+    "identifier": "78_bye-bye-blackbird_gene-austin_gbia0002811a",
+    "title": "Bye Bye Blackbird",
+    "creator": "Gene Austin",
+    "year": 1926,
+    "durationSec": 184,
+    "moodTags": ["fireside", "upbeat"]
+  },
+  {
+    "identifier": "78_king-porter-stomp_jelly-roll-morton_gbia0001150a",
+    "title": "King Porter Stomp",
+    "creator": "Jelly Roll Morton",
+    "year": 1924,
+    "durationSec": 170,
+    "moodTags": ["jazz", "urgent"]
+  },
+  {
+    "identifier": "78_heebie-jeebies_louis-armstrong-and-his-hot-five_gbia0001642a",
+    "title": "Heebie Jeebies",
+    "creator": "Louis Armstrong and His Hot Five",
+    "year": 1926,
+    "durationSec": 176,
+    "moodTags": ["jazz", "upbeat"]
+  },
+  {
+    "identifier": "78_yes-sir-that-s-my-baby_gene-austin_gbia0001732a",
+    "title": "Yes Sir, That's My Baby",
+    "creator": "Gene Austin",
+    "year": 1925,
+    "durationSec": 172,
+    "moodTags": ["upbeat", "fireside"]
+  },
+  {
+    "identifier": "78_sweet-georgia-brown_ben-bernie-and-his-hotel-roosevelt-orchestra_gbia0001552a",
+    "title": "Sweet Georgia Brown",
+    "creator": "Ben Bernie and His Hotel Roosevelt Orchestra",
+    "year": 1925,
+    "durationSec": 180,
+    "moodTags": ["jazz", "upbeat"]
+  },
+  {
+    "identifier": "78_manhattan_the-knickerbockers_gbia0002410a",
+    "title": "Manhattan",
+    "creator": "The Knickerbockers",
+    "year": 1925,
+    "durationSec": 182,
+    "moodTags": ["fireside", "upbeat"]
+  },
+  {
+    "identifier": "78_sleepy-time-gal_art-landry-and-his-orchestra_gbia0002011a",
+    "title": "Sleepy Time Gal",
+    "creator": "Art Landry and His Orchestra",
+    "year": 1925,
+    "durationSec": 185,
+    "moodTags": ["fireside", "solemn"]
+  }
+]
