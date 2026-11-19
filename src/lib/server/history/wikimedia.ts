@@ -1,5 +1,13 @@
 import type { HistoricalSource, TopicTag } from '$lib/types/broadcast';
 
+export interface PressCitation {
+	newspaper: string;
+	headline: string;
+	date: string;
+	url?: string;
+	author?: string;
+}
+
 export interface IngestedFact {
 	kind: 'event' | 'birth' | 'death' | 'newspaper';
 	year: number;
@@ -9,6 +17,7 @@ export interface IngestedFact {
 	detailedContext?: string;
 	category?: string;
 	relatedEntities?: string[];
+	pressCitations?: PressCitation[];
 }
 
 interface WikimediaPage {
@@ -31,18 +40,18 @@ interface WikimediaResponse {
 	deaths?: WikimediaItem[];
 }
 
-function inferCategoryFromText(text: string): TopicTag {
+export function inferCategoryFromText(text: string): TopicTag {
 	const lower = text.toLowerCase();
-	if (/flight|plane|aviation|airship|dirigible|pilot|aeronautic|byrd|lindbergh/.test(lower)) {
+	if (/flight|plane|aviation|airship|dirigible|pilot|aeronautic|byrd|lindbergh|rocket|airway/.test(lower)) {
 		return 'aviation';
 	}
-	if (/baseball|boxing|dempsey|tunney|game|championship|cup|race|stadium|tennis|football|olympic/.test(lower)) {
+	if (/baseball|boxing|dempsey|tunney|game|championship|cup|race|stadium|tennis|football|olympic|golf|swim/.test(lower)) {
 		return 'sports';
 	}
-	if (/treaty|senate|president|minister|election|congress|league of nations|parliament|governor|court/.test(lower)) {
+	if (/treaty|senate|president|minister|election|congress|league of nations|parliament|governor|court|king|premier|cabinet|law|bill|act/.test(lower)) {
 		return 'politics';
 	}
-	if (/market|stock|bank|trade|commerce|tariff|strike|labor|railway|corporation|dollar/.test(lower)) {
+	if (/market|stock|bank|trade|commerce|tariff|strike|labor|railway|rail|train|corporation|dollar|telephone|highway|route 66|company/.test(lower)) {
 		return 'commerce';
 	}
 	if (/storm|hurricane|gale|flood|blizzard|snow|temperature|weather|drought|earthquake/.test(lower)) {
@@ -62,7 +71,7 @@ async function fetchDayFeed(month: number, day: number): Promise<WikimediaRespon
 				'User-Agent': 'CenturyRadio/1.0 (https://century-radio.vercel.app)',
 				Accept: 'application/json'
 			},
-			signal: AbortSignal.timeout(2500)
+			signal: AbortSignal.timeout(3500)
 		});
 		if (!res.ok) return null;
 		return (await res.json()) as WikimediaResponse;
@@ -106,7 +115,7 @@ export function extractMatchingItems(
 			}
 
 			const detailedContext = contextEntries.length > 0 ? contextEntries.join('\n\n') : undefined;
-			const category = inferCategoryFromText(cleanText);
+			const category = kind === 'death' ? 'obituary' : inferCategoryFromText(cleanText);
 
 			facts.push({
 				kind,
@@ -139,19 +148,5 @@ export async function fetchWikimediaOnThisDay(isoDate: string): Promise<Ingested
 
 	const primaryFeed = await fetchDayFeed(month, day);
 	const results = extractMatchingItems(primaryFeed, year, isoDate);
-
-	// If no events found on exact day, check adjacent day once
-	if (results.length === 0) {
-		const d = new Date(Date.UTC(year, month - 1, day - 1));
-		const altIso = d.toISOString().slice(0, 10);
-		const altFeed = await fetchDayFeed(d.getUTCMonth() + 1, d.getUTCDate());
-		const altFacts = extractMatchingItems(altFeed, d.getUTCFullYear(), altIso);
-		for (const fact of altFacts) {
-			if (!results.some((r) => r.text === fact.text)) {
-				results.push(fact);
-			}
-		}
-	}
-
 	return results.slice(0, 8);
 }

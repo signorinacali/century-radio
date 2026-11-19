@@ -6,25 +6,24 @@ Welcome to `century-radio`. This document provides vital repository layout, guid
 
 ## Project Blueprint
 - **Repository:** `century-radio`
-- **Status:** Initialized
-- **Primary Tech Stack:** <!-- Define main stack here (e.g. TypeScript, Python, Rust, Go) -->
+- **Status:** Active Production Web Radio App
+- **Primary Tech Stack:** SvelteKit (Svelte 5 + TypeScript), Tailwind CSS v4, Web Audio API DSP, `@sveltejs/adapter-vercel`, `@google/genai`, Deepgram Aura-2 TTS, Vitest
 
 ## Directory Map
 | Directory | Purpose |
 | :--- | :--- |
-| `src/` | Application logic, components, APIs, and libraries |
+| `src/` | Application logic, Web Audio DSP graph, dial physics, Svelte 5 UI skins, server ingestion & API routes |
 | `docs/` | Architecture notes, design system, API docs, specifications |
-| `tests/` | Test files mirroring `src/` structure |
-| `scripts/` | Utility, deployment, and task scripts |
+| `tests/` | Vitest unit tests covering dial physics, Morse encoding, archive catalog, and server ingestion/scripting |
+| `scripts/` | Utility scripts (`index-78rpm.ts` Internet Archive catalog indexer) |
 | `.github/` | GitHub Actions CI/CD workflows |
 
 ## Standard Commands
-<!-- Maintain exact commands so agents can test their changes reliably -->
-- **Install dependencies:** `<command>`
-- **Start dev mode:** `<command>`
-- **Run tests:** `<command>`
-- **Lint / Typecheck:** `<command>`
-- **Build for release:** `<command>`
+- **Install dependencies:** `npm install`
+- **Start dev mode:** `npm run dev`
+- **Run tests:** `npm test`
+- **Lint / Typecheck:** `npm run check`
+- **Build for release:** `npm run build`
 
 ## Agent Rules & Conventions
 1. **Explore Before Modifying:** Understand existing module architecture before altering or deleting code.

@@ -257,6 +257,24 @@ const HISTORICAL_PERIOD_ARCHIVE: PeriodDispatch[] = [
 	}
 ];
 
+function toIngestedFact(match: PeriodDispatch, targetYear: number, isoDate: string): IngestedFact {
+	return {
+		kind: 'event',
+		year: targetYear,
+		date: isoDate,
+		text: match.headline,
+		source: {
+			provider: 'curated_archive',
+			title: `${match.title} (${targetYear})`,
+			url: match.url,
+			originalDate: isoDate
+		},
+		detailedContext: match.narrativeContext,
+		category: match.category,
+		relatedEntities: match.relatedEntities
+	};
+}
+
 export async function fetchPeriodContext(isoDate: string): Promise<IngestedFact[]> {
 	const parts = isoDate.split('-').map(Number);
 	const targetYear = parts[0] || 1926;
@@ -265,7 +283,6 @@ export async function fetchPeriodContext(isoDate: string): Promise<IngestedFact[
 
 	const facts: IngestedFact[] = [];
 
-	// 1. Exact Day Matches (or within 1-2 days)
 	const exactMatches = HISTORICAL_PERIOD_ARCHIVE.filter(
 		(d) =>
 			d.month === targetMonth &&
@@ -275,70 +292,27 @@ export async function fetchPeriodContext(isoDate: string): Promise<IngestedFact[
 	);
 
 	for (const match of exactMatches) {
-		facts.push({
-			kind: 'event',
-			year: targetYear,
-			date: isoDate,
-			text: `${match.headline} ${match.narrativeContext}`,
-			source: {
-				provider: 'curated_archive',
-				title: `${match.title} (${targetYear})`,
-				url: match.url,
-				originalDate: isoDate
-			},
-			detailedContext: match.narrativeContext,
-			category: match.category,
-			relatedEntities: match.relatedEntities
-		});
+		facts.push(toIngestedFact(match, targetYear, isoDate));
 	}
 
-	// 2. Month-specific background chronicles
 	const monthMatches = HISTORICAL_PERIOD_ARCHIVE.filter(
 		(d) => d.month === targetMonth && Math.abs(d.year - targetYear) <= 1
 	);
 
-	// Select 2-3 dispatches from the month to ensure richness
 	const additionalCount = Math.max(0, 3 - facts.length);
 	for (let i = 0; i < additionalCount && i < monthMatches.length; i++) {
 		const match = monthMatches[(targetDay + i) % monthMatches.length];
 		if (!facts.some((f) => f.source.title.startsWith(match.title))) {
-			facts.push({
-				kind: 'event',
-				year: targetYear,
-				date: isoDate,
-				text: `${match.headline} ${match.narrativeContext}`,
-				source: {
-					provider: 'curated_archive',
-					title: `${match.title} (${targetYear})`,
-					url: match.url,
-					originalDate: isoDate
-				},
-				detailedContext: match.narrativeContext,
-				category: match.category,
-				relatedEntities: match.relatedEntities
-			});
+			facts.push(toIngestedFact(match, targetYear, isoDate));
 		}
 	}
 
-	// 3. Fallback to rich historical anchors if still sparse
 	if (facts.length < 2) {
 		for (let i = 0; i < 2; i++) {
 			const fallback = HISTORICAL_PERIOD_ARCHIVE[(targetMonth + i) % HISTORICAL_PERIOD_ARCHIVE.length];
-			facts.push({
-				kind: 'event',
-				year: targetYear,
-				date: isoDate,
-				text: `${fallback.headline} ${fallback.narrativeContext}`,
-				source: {
-					provider: 'curated_archive',
-					title: `${fallback.title} (${targetYear})`,
-					url: fallback.url,
-					originalDate: isoDate
-				},
-				detailedContext: fallback.narrativeContext,
-				category: fallback.category,
-				relatedEntities: fallback.relatedEntities
-			});
+			if (!facts.some((f) => f.source.title.startsWith(fallback.title))) {
+				facts.push(toIngestedFact(fallback, targetYear, isoDate));
+			}
 		}
 	}
 

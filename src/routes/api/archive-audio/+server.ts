@@ -24,7 +24,7 @@ export const GET: RequestHandler = async ({ url, request }) => {
 	try {
 		const upstream = await fetch(mp3Url, {
 			headers,
-			signal: AbortSignal.timeout(12000)
+			signal: AbortSignal.timeout(20000)
 		});
 		if (!upstream.ok && upstream.status !== 206) {
 			throw error(502, `Internet Archive returned ${upstream.status}`);
@@ -33,7 +33,7 @@ export const GET: RequestHandler = async ({ url, request }) => {
 		const resHeaders = new Headers({
 			'Content-Type': upstream.headers.get('content-type') || 'audio/mpeg',
 			'Cache-Control': 'public, max-age=86400',
-			'Accept-Ranges': 'bytes'
+			'Accept-Ranges': upstream.headers.get('accept-ranges') || 'bytes'
 		});
 		const contentLength = upstream.headers.get('content-length');
 		if (contentLength) resHeaders.set('Content-Length', contentLength);

@@ -1,170 +1,867 @@
 [
   {
-    "identifier": "78_whispering_paul-whiteman-and-his-ambassador-orchestra_gbia0001053a",
-    "title": "Whispering",
-    "creator": "Paul Whiteman and His Ambassador Orchestra",
-    "year": 1920,
-    "durationSec": 182,
-    "moodTags": ["fireside", "upbeat"]
-  },
-  {
-    "identifier": "78_ain-t-we-got-fun_van-and-schenck_gbia0000434a",
-    "title": "Ain't We Got Fun",
-    "creator": "Van and Schenck",
-    "year": 1921,
-    "durationSec": 175,
-    "moodTags": ["upbeat", "jazz"]
-  },
-  {
-    "identifier": "78_st-louis-blues_bessie-smith_gbia0002321a",
-    "title": "St. Louis Blues",
-    "creator": "Bessie Smith",
-    "year": 1925,
-    "durationSec": 190,
-    "moodTags": ["solemn", "jazz"]
-  },
-  {
-    "identifier": "78_charleston_arthur-gibbs-and-his-gang_gbia0001812a",
-    "title": "Charleston",
-    "creator": "Arthur Gibbs and His Gang",
+    "identifier": "78_i-aint-never-had-nobody-crazy-over-me_durante-stein-roth-the-broadway-syncopaters_gbia0000427a",
+    "mp3File": "I Aint Never Had Nobody Crazy Over Me - Durante-restored.mp3",
+    "title": "I Ain't Never Had Nobody Crazy Over Me",
+    "creator": "Durante",
     "year": 1923,
-    "durationSec": 178,
-    "moodTags": ["jazz", "upbeat"]
-  },
-  {
-    "identifier": "78_black-bottom-stomp_jelly-roll-morton-s-red-hot-peppers_gbia0003110a",
-    "title": "Black Bottom Stomp",
-    "creator": "Jelly Roll Morton's Red Hot Peppers",
-    "year": 1926,
-    "durationSec": 194,
-    "moodTags": ["jazz", "upbeat", "urgent"]
-  },
-  {
-    "identifier": "78_sugar-foot-stomp_fletcher-henderson-and-his-orchestra_gbia0002741a",
-    "title": "Sugar Foot Stomp",
-    "creator": "Fletcher Henderson and His Orchestra",
-    "year": 1925,
-    "durationSec": 172,
-    "moodTags": ["jazz", "urgent"]
-  },
-  {
-    "identifier": "78_rhapsody-in-blue_paul-whiteman-and-his-concert-orchestra_gbia0000912a",
-    "title": "Rhapsody in Blue (Part 1)",
-    "creator": "Paul Whiteman & George Gershwin",
-    "year": 1924,
-    "durationSec": 258,
-    "moodTags": ["fireside", "solemn"]
-  },
-  {
-    "identifier": "78_east-st-louis-toodle-oo_duke-ellington-and-his-kentucky-club-orchestra_gbia0003402a",
-    "title": "East St. Louis Toodle-Oo",
-    "creator": "Duke Ellington and His Kentucky Club Orchestra",
-    "year": 1927,
-    "durationSec": 185,
-    "moodTags": ["jazz", "solemn"]
-  },
-  {
-    "identifier": "78_dipper-mouth-blues_king-olivers-creole-jazz-band_gbia0001201a",
-    "title": "Dipper Mouth Blues",
-    "creator": "King Oliver's Creole Jazz Band",
-    "year": 1923,
-    "durationSec": 160,
-    "moodTags": ["jazz", "urgent"]
-  },
-  {
-    "identifier": "78_muskrat-ramble_louis-armstrong-and-his-hot-five_gbia0001402a",
-    "title": "Muskrat Ramble",
-    "creator": "Louis Armstrong and His Hot Five",
-    "year": 1926,
-    "durationSec": 182,
-    "moodTags": ["jazz", "upbeat"]
-  },
-  {
-    "identifier": "78_singin-the-blues_frankie-trumbauer-and-his-orchestra-bix-beiderbecke_gbia0002104a",
-    "title": "Singin' the Blues",
-    "creator": "Frankie Trumbauer & Bix Beiderbecke",
-    "year": 1927,
     "durationSec": 180,
-    "moodTags": ["jazz", "fireside"]
+    "moodTags": [
+      "solemn",
+      "fireside",
+      "jazz"
+    ],
+    "category": "jazz"
   },
   {
-    "identifier": "78_the-prisoner-s-song_vernon-dalhart_gbia0000854a",
-    "title": "The Prisoner's Song",
-    "creator": "Vernon Dalhart",
+    "identifier": "78_bees-knees_the-original-memphis-five-lopez-and-lewis_gbia0278930a",
+    "mp3File": "BEE'S KNEES - The Original Memphis Five - Lopez and Lewis.mp3",
+    "title": "BEE'S KNEES",
+    "creator": "The Original Memphis Five",
+    "year": 1922,
+    "durationSec": 198,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_orys-creole-trombone_kid-orys-sunshine-orchestra-papa-mutt-carey-kid-ory-dink-joh_gbia0215087a",
+    "mp3File": "ORY'S CREOLE TROMBONE - KID ORY'S SUNSHINE ORCHESTRA.mp3",
+    "title": "ORY'S CREOLE TROMBONE",
+    "creator": "KID ORY'S SUNSHINE ORCHESTRA",
+    "year": 1922,
+    "durationSec": 203,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_swingin-for-a-swiss-miss_willie-lewis-and-his-orchestra-willie-lewis-joe-hayman-b_gbia0364559b",
+    "mp3File": "SWINGIN' FOR A SWISS MISS - WILLIE LEWIS and his ORCHESTRA.mp3",
+    "title": "SWINGIN' FOR A SWISS MISS",
+    "creator": "WILLIE LEWIS and his ORCHESTRA",
+    "year": 1920,
+    "durationSec": 200,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_walkin-the-streets-until-my-baby-comes-home_wingy-mannone-and-his-orch-wingy-ma_gbia0270373a",
+    "mp3File": "WALKIN' THE STREETS (Until M - WINGY MANNONE and his ORCH..mp3",
+    "title": "WALKIN' THE STREETS (Until My Baby Comes Home)",
+    "creator": "WINGY MANNONE and his ORCH.",
+    "year": 1921,
+    "durationSec": 172,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_society-blues_kid-orys-sunshine-orchestra-papa-mutt-carey-kid-ory-dink-johnson-fre_gbia0215087b",
+    "mp3File": "SOCIETY BLUES - KID ORY'S SUNSHINE ORCHESTRA.mp3",
+    "title": "SOCIETY BLUES",
+    "creator": "KID ORY'S SUNSHINE ORCHESTRA",
+    "year": 1922,
+    "durationSec": 192,
+    "moodTags": [
+      "solemn",
+      "fireside",
+      "jazz"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_the-love-nest_jack-hyltons-jazz-band-hirsch_gbia3044205b",
+    "mp3File": "The love nest - Jack Hylton's Jazz Band - HIRSCH.mp3",
+    "title": "The love nest",
+    "creator": "Jack Hylton's Jazz Band",
+    "year": 1921,
+    "durationSec": 194,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_take-me-out-to-the-ball-game_frankie-masters-and-his-orchestra-the-masters-voices-n_gbia0004462a",
+    "mp3File": "Take Me Out To The Ball Game - Frankie Masters and his Orchestra.mp3",
+    "title": "Take Me Out To The Ball Game",
+    "creator": "Frankie Masters and his Orchestra",
+    "year": 1923,
+    "durationSec": 163,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_shake-it-and-break-it_lanins-southern-serenaders-friscoe-chiha-clark_gbia0101530a",
+    "mp3File": "Shake It and Break It - Lanin's Southern Serenaders.mp3",
+    "title": "Shake It and Break It",
+    "creator": "Lanin's Southern Serenaders",
+    "year": 1921,
+    "durationSec": 191,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_corn-on-the-cob_cliff-hess-banta--hess-with-selvins-orchestra_gbia0000417b",
+    "mp3File": "Corn on The Cob - Cliff Hess - Banta & Hess with Selvin's Orchestra.mp3",
+    "title": "Corn on The Cob",
+    "creator": "Cliff Hess",
+    "year": 1923,
+    "durationSec": 180,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_wheres-my-sweetie-hiding-donde-ha-ido-me-dulcita_paul-van-loan-and-his-orchestr_gbia0221140b",
+    "mp3File": "Where's My Sweetie Hidin - Paul Van Loan and His Orchestra.mp3",
+    "title": "Where's My Sweetie Hiding? (Donde ha ido me dulcita)",
+    "creator": "Paul Van Loan and His Orchestra",
     "year": 1924,
+    "durationSec": 177,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_unknown-blues_fletcher-henderson-henderson_gbia0001307b",
+    "mp3File": "Unknown Blues - Fletcher Henderson - Henderson-restored.mp3",
+    "title": "Unknown Blues",
+    "creator": "Fletcher Henderson",
+    "year": 1921,
+    "durationSec": 154,
+    "moodTags": [
+      "solemn",
+      "fireside",
+      "jazz"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_weary-blues_stark-cope-harveys-orch._gbia0000426a",
+    "mp3File": "Weary Blues - Stark - Cope Harvey's Orch..mp3",
+    "title": "Weary Blues",
+    "creator": "Stark",
+    "year": 1924,
+    "durationSec": 210,
+    "moodTags": [
+      "solemn",
+      "fireside",
+      "jazz"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_two-time-dan_turk-robinson-the-broadway-syncopaters_gbia0000427b",
+    "mp3File": "Two Time Dan - Turk - Robinson - The Broadway Syncopaters.mp3",
+    "title": "Two Time Dan",
+    "creator": "Turk",
+    "year": 1923,
+    "durationSec": 190,
+    "moodTags": [
+      "solemn",
+      "fireside",
+      "jazz"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_pretty-little-baby_phil-bakers-bad-boys-sid-silvers-phil-baker-ben-bernie_gbia0527224a",
+    "mp3File": "PRETTY LITTLE BABY - PHIL BAKER'S BAD BOYS.mp3",
+    "title": "PRETTY LITTLE BABY",
+    "creator": "PHIL BAKER'S BAD BOYS",
+    "year": 1925,
+    "durationSec": 238,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_upright-and-grand_banta-frank-banta-and-the-ambassadors_gbia0000417a",
+    "mp3File": "Upright and Grand - Banta - Frank Banta and The Ambassadors.mp3",
+    "title": "Upright and Grand",
+    "creator": "Banta",
+    "year": 1923,
+    "durationSec": 189,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_tears_king-olivers-jazz-band-hardin-armstrong-joe-oliver-louis-armstrong-johnny-do_gbia0001053a",
+    "mp3File": "Tears - King Oliver's Jazz Band - Hardin.mp3",
+    "title": "Tears",
+    "creator": "King Oliver's Jazz Band",
+    "year": 1923,
+    "durationSec": 199,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_wigwam_joseph-samuels-orch-samuels_gbia0456930a",
+    "mp3File": "WIGWAM - Joseph Samuels' Orch. - Samuels.mp3",
+    "title": "WIGWAM",
+    "creator": "Joseph Samuels' Orch.",
+    "year": 1920,
+    "durationSec": 185,
+    "moodTags": [
+      "jazz",
+      "upbeat"
+    ],
+    "category": "jazz"
+  },
+  {
+    "identifier": "78_jazzin-babies-blues_ethel-waters-and-joe-smiths-jazz-masters-richard-jones_gbia0363130a",
+    "mp3File": "JAZZIN' BABIES BLUES - ETHEL WATERS And Joe Smith's Jazz Masters.mp3",
+    "title": "JAZZIN' BABIES BLUES",
+    "creator": "ETHEL WATERS And Joe Smith's Jazz Masters",
+    "year": 1922,
+    "durationSec": 187,
+    "moodTags": [
+      "solemn",
+      "fireside",
+      "jazz"
+    ],
+    "category": "blues"
+  },
+  {
+    "identifier": "78_aunt-hagers-blues_original-memphis-five-handy_gbia0101523b",
+    "mp3File": "Aunt Hager's Blues - Original Memphis Five.mp3",
+    "title": "Aunt Hager's Blues",
+    "creator": "Original Memphis Five",
+    "year": 1923,
+    "durationSec": 186,
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "blues"
+  },
+  {
+    "identifier": "78_chicago-monkey-man-blues_rosa-henderson-edgar-dowell-austin_gbia0279167a",
+    "mp3File": "CHICAGO MONKEY-MAN BLUES - ROSA HENDERSON.mp3",
+    "title": "CHICAGO MONKEY-MAN BLUES",
+    "creator": "ROSA HENDERSON",
+    "year": 1924,
+    "durationSec": 193,
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "blues"
+  },
+  {
+    "identifier": "78_lonesome-mamma-blues_jazz-bos-carolina-serenaders-nickel-brown_gbia0101529b",
+    "mp3File": "Lonesome Mamma Blues - Jazz-Bo's Carolina Serenaders.mp3",
+    "title": "Lonesome Mamma Blues",
+    "creator": "Jazz-Bo's Carolina Serenaders",
+    "year": 1922,
+    "durationSec": 181,
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "blues"
+  },
+  {
+    "identifier": "78_mistreatin-daddy_edna-hicks-porter-grainger-grainger-ricketts_gbia0002497a",
+    "mp3File": "Mistreatin Daddy - Edna Hicks - Porter Grainger-restored.mp3",
+    "title": "Mistreatin' Daddy",
+    "creator": "Edna Hicks",
+    "year": 1922,
+    "durationSec": 181,
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "blues"
+  },
+  {
+    "identifier": "78_my-man-rocks-me-with-one-steady-roll_trixie-smith-and-the-jazz-masters-j-bernie_gbia0243365b",
+    "mp3File": "My Man Rocks Me (With  - Trixie Smith and The Jazz Masters.mp3",
+    "title": "My Man Rocks Me (With One Steady Roll)",
+    "creator": "Trixie Smith and The Jazz Masters",
+    "year": 1924,
+    "durationSec": 186,
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "blues"
+  },
+  {
+    "identifier": "78_low-down-blues_noble-sissle-and-his-sizzling-syncopators-sissle-and-blake_gbia0363961b",
+    "mp3File": "LOW DOWN BLUES - Noble Sissle and His Sizzling Syncopators.mp3",
+    "title": "LOW DOWN BLUES",
+    "creator": "Noble Sissle and His Sizzling Syncopators",
+    "year": 1921,
+    "durationSec": 189,
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "blues"
+  },
+  {
+    "identifier": "78_lucky-rock-blues_ma-rainey-lovie-austin-and-her-blues-serenaders-lillie-taylor-ka_gbia0377247b",
+    "mp3File": "Lucky Rock Blues - \"Ma\" Rainey - Lovie Austin and Her Blues Serenaders.mp3",
+    "title": "Lucky Rock Blues",
+    "creator": "\"Ma\" Rainey",
+    "year": 1924,
+    "durationSec": 193,
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "blues"
+  },
+  {
+    "identifier": "78_graveyard-dream-blues_ida-cox-lovie-austin-and-her-blues-serenaders-tommy-ladnier-j_gbia0385232a",
+    "mp3File": "GRAVEYARD DREAM BLUES - Ida Cox - Lovie Austin and her Blues Serenaders.mp3",
+    "title": "GRAVEYARD DREAM BLUES",
+    "creator": "Ida Cox",
+    "year": 1923,
+    "durationSec": 183,
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "blues"
+  },
+  {
+    "identifier": "78_save-your-man-and-satisfy-your-soul_edna-hicks-porter-grainger-grainger-ricketts-ha_gbia0002497b",
+    "mp3File": "Save Your Man and Satisfy Your Soul - Edna Hicks-restored.mp3",
+    "title": "Save Your Man and Satisfy Your Soul",
+    "creator": "Edna Hicks",
+    "year": 1922,
+    "durationSec": 187,
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "blues"
+  },
+  {
+    "identifier": "78_hopeless-blues_jazz-bos-carolina-serenaders-l-garrett_gbia0101529a",
+    "mp3File": "Hopeless Blues - Jazz-Bo's Carolina Serenaders.mp3",
+    "title": "Hopeless Blues",
+    "creator": "Jazz-Bo's Carolina Serenaders",
+    "year": 1922,
+    "durationSec": 184,
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "blues"
+  },
+  {
+    "identifier": "78_give-me-that-old-slow-drag_trixie-smith-and-the-jazz-masters-tom-delaney_gbia0243365a",
+    "mp3File": "Give Me That Old Slow Drag - Trixie Smith and The Jazz Masters.mp3",
+    "title": "Give Me That Old Slow Drag",
+    "creator": "Trixie Smith and The Jazz Masters",
+    "year": 1924,
+    "durationSec": 183,
+    "moodTags": [
+      "solemn",
+      "fireside",
+      "jazz"
+    ],
+    "category": "blues"
+  },
+  {
+    "identifier": "78_mary-of-argyle_colin-omore-nelson-jefferys_gbia0079739a",
+    "mp3File": "Mary of Argyle - Colin O'More - Nelson - Jefferys.mp3",
+    "title": "Mary of Argyle",
+    "creator": "Colin O'More",
+    "year": 1923,
+    "durationSec": 185,
+    "moodTags": [
+      "fireside",
+      "upbeat"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_tripoli-on-the-shores-of-tripoli_c-hart-and-e-shaw-cuinningham-dubin-weill_gbia0085480a",
+    "mp3File": "Tripoli (On the Shores of Tripoli) - C. Hart and E. Shaw.mp3",
+    "title": "Tripoli (On the Shores of Tripoli)",
+    "creator": "C. Hart and E. Shaw",
+    "year": 1921,
+    "durationSec": 179,
+    "moodTags": [
+      "fireside",
+      "upbeat"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_show-me-the-way-to-go-home_harry-fay-irving-king_gbia3037986b",
+    "mp3File": "SHOW ME THE WAY TO GO HOME - HARRY FAY - Irving King.mp3",
+    "title": "SHOW ME THE WAY TO GO HOME",
+    "creator": "HARRY FAY",
+    "year": 1925,
+    "durationSec": 189,
+    "moodTags": [
+      "fireside",
+      "upbeat"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_baby-sister-blues_macdowell-sisters-henry-i-marshall_gbia0100633a",
+    "mp3File": "Baby Sister Blues - MacDowell Sisters - Henry I. Marshall.mp3",
+    "title": "Baby Sister Blues",
+    "creator": "MacDowell Sisters",
+    "year": 1924,
+    "durationSec": 225,
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_yes-we-have-no-bananas_harry-blake-silver-cohn_gbia0010444a",
+    "mp3File": "Yes! We Have No Bananas - Harry Blake - SIlver-restored.mp3",
+    "title": "Yes! We Have No Bananas",
+    "creator": "Harry Blake",
+    "year": 1923,
+    "durationSec": 169,
+    "moodTags": [
+      "fireside",
+      "upbeat"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_the-new-york-glide_ethel-waters-alburys-blue-and-jazz-seven-tom-delaney_gbia0275389b",
+    "mp3File": "THE NEW YORK GLIDE - ETHEL WATERS - ALBURY'S BLUE AND JAZZ SEVEN.mp3",
+    "title": "THE NEW YORK GLIDE",
+    "creator": "ETHEL WATERS",
+    "year": 1921,
+    "durationSec": 200,
+    "moodTags": [
+      "fireside",
+      "upbeat"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_morning-noon-and-night_a-palet-gallarini-suppe_gbia0237941b",
+    "mp3File": "MORNING, NOON AND NIGHT - A. PALET GALLARINI.mp3",
+    "title": "MORNING, NOON AND NIGHT",
+    "creator": "A. PALET GALLARINI",
+    "year": 1922,
+    "durationSec": 192,
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_at-dawning-i-love-you_mary-garden-eberhart-cadman-jean-h.-dansereau_gbia0010086a",
+    "mp3File": "At Dawning (I Love You) - Mary Garden - Eberhart.mp3",
+    "title": "At Dawning (I Love You)",
+    "creator": "Mary Garden",
+    "year": 1926,
+    "durationSec": 191,
+    "moodTags": [
+      "fireside",
+      "upbeat"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_carolina-in-the-morning_billy-burton-and-everett-clark-gus-kahn-and-walter-donaldso_gbia0336418a",
+    "mp3File": "CAROLINA IN THE MORNING - Billy Burton and Everett Clark.mp3",
+    "title": "CAROLINA IN THE MORNING",
+    "creator": "Billy Burton and Everett Clark",
+    "year": 1922,
+    "durationSec": 212,
+    "moodTags": [
+      "fireside",
+      "upbeat"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_nelly-kelly-i-love-you_charles-hart-cohan_gbia0045648b",
+    "mp3File": "Nelly Kelly, I Love You - Charles Hart - Cohan-restored.mp3",
+    "title": "Nelly Kelly, I Love You",
+    "creator": "Charles Hart",
+    "year": 1923,
+    "durationSec": 169,
+    "moodTags": [
+      "fireside",
+      "upbeat"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_one-two-three-four_macdowell-sisters-jack-alau_gbia0100633b",
+    "mp3File": "One, Two, Three, Four - MacDowell Sisters.mp3",
+    "title": "One, Two, Three, Four",
+    "creator": "MacDowell Sisters",
+    "year": 1924,
+    "durationSec": 224,
+    "moodTags": [
+      "fireside",
+      "upbeat"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_moon-river_de-pace-brothers-david_gbia0105409b",
+    "mp3File": "Moon River - De Pace Brothers - David.mp3",
+    "title": "Moon River",
+    "creator": "De Pace Brothers",
+    "year": 1921,
     "durationSec": 195,
-    "moodTags": ["solemn", "fireside"]
+    "moodTags": [
+      "solemn",
+      "fireside"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_gott-is-einer_moishe-oysher-kadimah-singers-sam-medoff_gbia0432650b",
+    "mp3File": "GOTT IS EINER - MOISHE OYSHER - KADIMAH SINGERS.mp3",
+    "title": "GOTT IS EINER",
+    "creator": "MOISHE OYSHER",
+    "year": 1921,
+    "durationSec": 167,
+    "moodTags": [
+      "fireside",
+      "upbeat"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_fledermaus_gbia0094909b",
+    "mp3File": "Fledermaus.mp3",
+    "title": "Fledermaus",
+    "creator": "Unknown Orchestra",
+    "year": 1922,
+    "durationSec": 172,
+    "moodTags": [
+      "fireside",
+      "upbeat"
+    ],
+    "category": "ballroom"
+  },
+  {
+    "identifier": "78_conchita_armand-vecsey-armand-vecsey-and-his-hungarian-orchestra_gbia0000855a",
+    "mp3File": "Conchita - Armand Vecsey - Armand Vecsey and his Hungarian Orchestra-restored.mp3",
+    "title": "Conchita",
+    "creator": "Armand Vecsey",
+    "year": 1921,
+    "durationSec": 246,
+    "moodTags": [
+      "fireside",
+      "solemn"
+    ],
+    "category": "classical"
+  },
+  {
+    "identifier": "78_der-rosenkavalier_richard-strauss-tanzwalzer-armand-vecesey-and-his-hungarian-orche_gbia0000083b",
+    "mp3File": "Der Rosenkavalier - Richard Strauss - Tanzwalzer-restored.mp3",
+    "title": "Der Rosenkavalier",
+    "creator": "Richard Strauss",
+    "year": 1922,
+    "durationSec": 217,
+    "moodTags": [
+      "fireside",
+      "solemn"
+    ],
+    "category": "classical"
   },
   {
     "identifier": "78_valse-in-d-flat-major_sergei-rachmaninoff-chopin_gbia0012582a",
+    "mp3File": "Valse in D Flat Major - Sergei Rachmaninoff-restored.mp3",
     "title": "Valse in D Flat Major",
     "creator": "Sergei Rachmaninoff",
     "year": 1921,
-    "durationSec": 180,
-    "moodTags": ["fireside", "solemn"]
+    "durationSec": 112,
+    "moodTags": [
+      "fireside",
+      "solemn"
+    ],
+    "category": "classical"
   },
   {
-    "identifier": "78_some-of-these-days_sophie-tucker_gbia0001923a",
-    "title": "Some of These Days",
-    "creator": "Sophie Tucker",
+    "identifier": "78_pomp-and-circumstance_chicago-symphony-orchestra-sir-edward-elgar-frederick-stock_gbia7035420b",
+    "mp3File": "POMP AND CIRCUMSTANCE - Chicago Symphony Orchestra.mp3",
+    "title": "POMP AND CIRCUMSTANCE",
+    "creator": "Chicago Symphony Orchestra",
     "year": 1926,
-    "durationSec": 178,
-    "moodTags": ["upbeat", "jazz"]
+    "durationSec": 272,
+    "moodTags": [
+      "urgent"
+    ],
+    "category": "classical"
   },
   {
-    "identifier": "78_bye-bye-blackbird_gene-austin_gbia0002811a",
-    "title": "Bye Bye Blackbird",
-    "creator": "Gene Austin",
+    "identifier": "78_carmen-volumes-i-and-ii_enrico-caruso-rossini_gbia8006672",
+    "mp3File": "01 - Domine Deus (Praise Forever to God, the Fa.mp3",
+    "title": "CARMEN (Volumes I and II)",
+    "creator": "Enrico Caruso",
+    "year": 1920,
+    "durationSec": 272,
+    "moodTags": [
+      "fireside",
+      "solemn"
+    ],
+    "category": "classical"
+  },
+  {
+    "identifier": "78_ada-la-fatal-pietra-the-fatal-stone_rosa-ponselle-giovanni-martinelli-verdi_gbia0351606a",
+    "mp3File": "Aïda-La fatal pietra ( - Rosa Ponselle-Giovanni Martinelli.mp3",
+    "title": "Aïda-La fatal pietra (The Fatal Stone)",
+    "creator": "Rosa Ponselle-Giovanni Martinelli",
     "year": 1926,
-    "durationSec": 184,
-    "moodTags": ["fireside", "upbeat"]
+    "durationSec": 204,
+    "moodTags": [
+      "fireside",
+      "solemn"
+    ],
+    "category": "classical"
   },
   {
-    "identifier": "78_king-porter-stomp_jelly-roll-morton_gbia0001150a",
-    "title": "King Porter Stomp",
-    "creator": "Jelly Roll Morton",
+    "identifier": "78_abandonado-abandoned_guillermo-posadas-bregor-skolnik-and-his-orchestra_gbia0000134a",
+    "mp3File": "Abandonado (Abandoned) - Guillermo Posadas-restored.mp3",
+    "title": "Abandonado (Abandoned)",
+    "creator": "Guillermo Posadas",
     "year": 1924,
-    "durationSec": 170,
-    "moodTags": ["jazz", "urgent"]
+    "durationSec": 232,
+    "moodTags": [
+      "fireside",
+      "solemn"
+    ],
+    "category": "classical"
   },
   {
-    "identifier": "78_heebie-jeebies_louis-armstrong-and-his-hot-five_gbia0001642a",
-    "title": "Heebie Jeebies",
-    "creator": "Louis Armstrong and His Hot Five",
+    "identifier": "78_valse-in-a-flat-op-42_sergei-rachmaninoff-chopin_gbia0307222a",
+    "mp3File": "Valse in A Flat Op. 42 - SERGEI RACHMANINOFF.mp3",
+    "title": "Valse in A Flat Op. 42",
+    "creator": "SERGEI RACHMANINOFF",
+    "year": 1919,
+    "durationSec": 237,
+    "moodTags": [
+      "fireside",
+      "solemn"
+    ],
+    "category": "classical"
+  },
+  {
+    "identifier": "78_wedding-march_mendelssohn_gbia0414052a",
+    "mp3File": "WEDDING MARCH - Mendelssohn.mp3",
+    "title": "WEDDING MARCH",
+    "creator": "Mendelssohn",
+    "year": 1923,
+    "durationSec": 267,
+    "moodTags": [
+      "urgent"
+    ],
+    "category": "classical"
+  },
+  {
+    "identifier": "78_prelude-in-c-sharp-minor_sergei-rachmaninoff_gbia0284165a",
+    "mp3File": "Prelude in C Sharp Minor - Sergei Rachmaninoff.mp3",
+    "title": "Prelude in C Sharp Minor",
+    "creator": "Sergei Rachmaninoff",
+    "year": 1921,
+    "durationSec": 210,
+    "moodTags": [
+      "fireside",
+      "solemn"
+    ],
+    "category": "classical"
+  },
+  {
+    "identifier": "78_a-victory-ball-fantasy-part-2_willem-mengelberg-new-york-philharmonic-orchestra_gbia0016554",
+    "mp3File": "01 - A Victory Ball - Fantasy - Part 1 - Willem Mengelberg.mp3",
+    "title": "A Victory Ball - Fantasy - Part 4; A Victory Ball - Fantasy - Part 2; A Victory Ball - Fantasy - Part 1; A Victory Ball - Fantasy - Part 3",
+    "creator": "Willem Mengelberg",
+    "year": 1925,
+    "durationSec": 195,
+    "moodTags": [
+      "fireside",
+      "solemn"
+    ],
+    "category": "classical"
+  },
+  {
+    "identifier": "78_barcarolle_offenbach_gbia3030629a",
+    "mp3File": "BARCAROLLE - Offenbach.mp3",
+    "title": "BARCAROLLE",
+    "creator": "Offenbach",
+    "year": 1922,
+    "durationSec": 173,
+    "moodTags": [
+      "fireside",
+      "solemn"
+    ],
+    "category": "classical"
+  },
+  {
+    "identifier": "78_the-okeh-laughing-record_gbia0046783a",
+    "mp3File": "The Okeh Laughing Record.mp3",
+    "title": "The Okeh Laughing Record",
+    "creator": "Unknown Orchestra",
+    "year": 1922,
+    "durationSec": 181,
+    "moodTags": [
+      "upbeat",
+      "fireside"
+    ],
+    "category": "comedy"
+  },
+  {
+    "identifier": "78_you-tell-her-i-s-t-u-t-t-e-r_thomas-west-rose-friend_gbia0170653b",
+    "mp3File": "YOU TELL HER I S-T-U-T-T-E-R - THOMAS & WEST.mp3",
+    "title": "YOU TELL HER I S-T-U-T-T-E-R",
+    "creator": "THOMAS & WEST",
+    "year": 1922,
+    "durationSec": 193,
+    "moodTags": [
+      "upbeat",
+      "fireside"
+    ],
+    "category": "comedy"
+  },
+  {
+    "identifier": "78_it-had-to-be-you_marion-harris-phil-ohman-isham-jones-gus-kahn_gbia3004828a",
+    "mp3File": "IT HAD TO BE YOU - MARION HARRIS - Phil Ohman.mp3",
+    "title": "IT HAD TO BE YOU",
+    "creator": "MARION HARRIS",
+    "year": 1924,
+    "durationSec": 199,
+    "moodTags": [
+      "upbeat",
+      "fireside"
+    ],
+    "category": "comedy"
+  },
+  {
+    "identifier": "78_breakfast-in-bed-on-sunday-morning_sir-harry-lauder-grafton-lauder_gbia0520918b",
+    "mp3File": "Breakfast in Bed on Sunday Morning - Sir Harry Lauder.mp3",
+    "title": "Breakfast in Bed on Sunday Morning",
+    "creator": "Sir Harry Lauder",
     "year": 1926,
-    "durationSec": 176,
-    "moodTags": ["jazz", "upbeat"]
+    "durationSec": 254,
+    "moodTags": [
+      "urgent",
+      "upbeat",
+      "fireside"
+    ],
+    "category": "comedy"
   },
   {
-    "identifier": "78_yes-sir-that-s-my-baby_gene-austin_gbia0001732a",
-    "title": "Yes Sir, That's My Baby",
-    "creator": "Gene Austin",
-    "year": 1925,
-    "durationSec": 172,
-    "moodTags": ["upbeat", "fireside"]
+    "identifier": "78_i-want-a-jazzy-kiss_collins-and-harlan-milo-pego_gbia0023279a",
+    "mp3File": "I Want A Jazzy Kiss - Collins and Harlan.mp3",
+    "title": "I Want A Jazzy Kiss",
+    "creator": "Collins and Harlan",
+    "year": 1920,
+    "durationSec": 255,
+    "moodTags": [
+      "jazz",
+      "upbeat",
+      "fireside"
+    ],
+    "category": "comedy"
   },
   {
-    "identifier": "78_sweet-georgia-brown_ben-bernie-and-his-hotel-roosevelt-orchestra_gbia0001552a",
-    "title": "Sweet Georgia Brown",
-    "creator": "Ben Bernie and His Hotel Roosevelt Orchestra",
-    "year": 1925,
-    "durationSec": 180,
-    "moodTags": ["jazz", "upbeat"]
+    "identifier": "78_keep-my-skillet-good-and-greasy_uncle-dave-macon-macon_gbia0237943a",
+    "mp3File": "Keep My Skillet Good and Greasy - Uncle Dave Macon.mp3",
+    "title": "Keep My Skillet Good and Greasy",
+    "creator": "Uncle Dave Macon",
+    "year": 1924,
+    "durationSec": 160,
+    "moodTags": [
+      "upbeat",
+      "fireside"
+    ],
+    "category": "comedy"
   },
   {
-    "identifier": "78_manhattan_the-knickerbockers_gbia0002410a",
-    "title": "Manhattan",
-    "creator": "The Knickerbockers",
-    "year": 1925,
-    "durationSec": 182,
-    "moodTags": ["fireside", "upbeat"]
+    "identifier": "78_babe-ruths-home-run-story_babe-ruth_gbia0293255a",
+    "mp3File": "\"BABE\" RUTH'S HOME RUN STORY - \"Babe\" Ruth.mp3",
+    "title": "\"BABE\" RUTH'S HOME RUN STORY",
+    "creator": "\"Babe\" Ruth",
+    "year": 1920,
+    "durationSec": 190,
+    "moodTags": [
+      "upbeat",
+      "fireside"
+    ],
+    "category": "comedy"
   },
   {
-    "identifier": "78_sleepy-time-gal_art-landry-and-his-orchestra_gbia0002011a",
-    "title": "Sleepy Time Gal",
-    "creator": "Art Landry and His Orchestra",
+    "identifier": "78_gunga-din_gbia0023259b",
+    "mp3File": "Gunga Din.mp3",
+    "title": "Gunga Din",
+    "creator": "Unknown Orchestra",
+    "year": 1919,
+    "durationSec": 279,
+    "moodTags": [
+      "upbeat",
+      "fireside"
+    ],
+    "category": "comedy"
+  },
+  {
+    "identifier": "78_uncle-josh-at-the-dentist_duncan-jones_gbia0011469a",
+    "mp3File": "Uncle Josh At The Dentist - Duncan Jones-restored.mp3",
+    "title": "Uncle Josh At The Dentist",
+    "creator": "Duncan Jones",
     "year": 1925,
-    "durationSec": 185,
-    "moodTags": ["fireside", "solemn"]
+    "durationSec": 194,
+    "moodTags": [
+      "upbeat",
+      "fireside"
+    ],
+    "category": "comedy"
+  },
+  {
+    "identifier": "78_pittsburgh-pa_monroe-silver-ruby_gbia0026644b",
+    "mp3File": "Pittsburgh, PA. - Monroe Silver - Ruby-restored.mp3",
+    "title": "Pittsburgh, PA.",
+    "creator": "Monroe Silver",
+    "year": 1919,
+    "durationSec": 195,
+    "moodTags": [
+      "upbeat",
+      "fireside"
+    ],
+    "category": "comedy"
   }
 ]

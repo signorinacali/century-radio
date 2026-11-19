@@ -1,26 +1,151 @@
 import { env } from '$env/dynamic/private';
 import type { SegmentType } from '$lib/types/broadcast';
 
-const MAX_CHUNK_CHARS = 1600;
+const MAX_CHUNK_CHARS = 340;
+
+export const VOICE_APOLLO = 'aura-2-apollo-en';
+export const VOICE_ORION = 'aura-2-orion-en';
+export const VOICE_ASTERIA = 'aura-2-asteria-en';
+export const VOICE_ATHENA = 'aura-2-athena-en';
+
+export interface DialogueTurn {
+	speaker: string;
+	voiceModel: string;
+	text: string;
+}
 
 export function getVoiceForSegment(type: SegmentType): string {
 	switch (type) {
 		case 'VINTAGE_AD':
-			return 'aura-2-asteria-en';
+			return VOICE_ASTERIA;
 		case 'WEATHER_REPORT':
 		case 'SCIENCE_AND_AVIATION':
-			return 'aura-2-athena-en';
+			return VOICE_ATHENA;
 		case 'MARKET_REPORT':
 		case 'SPORTS_ROUNDUP':
-			return 'aura-2-orion-en';
+		case 'COMEDY_SKETCH':
+		case 'VARIETY_HOUR':
+			return VOICE_ORION;
 		case 'STATION_ID':
 		case 'NEWS_BULLETIN':
 		case 'FEATURE_STORY':
 		case 'FIRESIDE_EDITORIAL':
+		case 'OBITUARY_WIRE':
+		case 'CONCERT_HALL':
+		case 'RADIO_DRAMA':
+		case 'MUSIC_INTERLUDE':
 		case 'TIME_SIGNAL':
 		default:
-			return 'aura-2-apollo-en';
+			return VOICE_APOLLO;
 	}
+}
+
+export function getSpeakerLabelForSegment(type: SegmentType, isMultiVoice = false): string {
+	if (isMultiVoice || type === 'RADIO_DRAMA') {
+		return 'Dramatic Repertory Cast (Multi-Voice)';
+	}
+	switch (type) {
+		case 'VINTAGE_AD':
+			return 'Clara Vance · Commercial Desk';
+		case 'WEATHER_REPORT':
+			return 'Evelyn Shaw · Weather Bureau';
+		case 'SCIENCE_AND_AVIATION':
+			return 'Evelyn Shaw · Science & Air Desk';
+		case 'MARKET_REPORT':
+			return 'Grant Sterling · Financial Ticker';
+		case 'SPORTS_ROUNDUP':
+			return 'Grant Sterling · Sports & Stage';
+		case 'COMEDY_SKETCH':
+		case 'VARIETY_HOUR':
+			return 'Grant Sterling · Variety Host + 78rpm';
+		case 'CONCERT_HALL':
+			return 'Arthur Pendelton · Concert Master';
+		case 'MUSIC_INTERLUDE':
+			return 'Arthur Pendelton · Studio Victrola';
+		case 'OBITUARY_WIRE':
+			return 'Arthur Pendelton · Telegraph Notices';
+		case 'FEATURE_STORY':
+			return 'Arthur Pendelton · Special Correspondent';
+		case 'FIRESIDE_EDITORIAL':
+			return 'Arthur Pendelton · Evening Editorial';
+		case 'STATION_ID':
+		case 'NEWS_BULLETIN':
+		default:
+			return 'Arthur Pendelton · Senior Newsman';
+	}
+}
+
+function mapSpeakerNameToVoice(speakerName: string, fallbackVoice: string): string {
+	const upper = speakerName.toUpperCase().trim();
+	if (/^(CLARA|ELEANOR|MARGARET|BEATRICE|HELEN|LOUISE|RUTH|LADY|WOMAN|MISS)/.test(upper)) {
+		return VOICE_ASTERIA;
+	}
+	if (/^(REPORTER|CORRESPONDENT|METEOROLOGIST|DOCTOR|PROFESSOR|OPERATOR|ATHENA|EVELYN)/.test(upper)) {
+		return VOICE_ATHENA;
+	}
+	if (/^(INSPECTOR|DETECTIVE|CAPTAIN|HAROLD|JACK|BILLY|ORION|GRANT|VILLAIN|SHERIFF)/.test(upper)) {
+		return VOICE_ORION;
+	}
+	if (/^(ANNOUNCER|HOST|NARRATOR|ARTHUR|APOLLO)/.test(upper)) {
+		return VOICE_APOLLO;
+	}
+	return fallbackVoice;
+}
+
+/**
+ * Splits a multi-speaker radio drama or dialogue script into ordered speaker turns.
+ * Paragraphs starting with `SPEAKER:` (e.g. `CLARA: Look at the wire...`) are routed
+ * to distinct Deepgram Aura-2 cast voices with the speaker cue stripped from spoken audio.
+ */
+export function parseDialogueTurns(scriptText: string, defaultVoice = VOICE_APOLLO): DialogueTurn[] {
+	const paragraphs = scriptText
+		.split(/\n\s*\n/)
+		.map((p) => p.trim())
+		.filter(Boolean);
+
+	if (paragraphs.length === 0) return [];
+
+	const cuePattern = /^([A-Z][A-Z0-9 .'-]{1,22}):\s+([\s\S]+)$/;
+	const rawTurns: DialogueTurn[] = [];
+	let hasAnyCue = false;
+
+	for (const para of paragraphs) {
+		const match = para.match(cuePattern);
+		if (match) {
+			hasAnyCue = true;
+			const speaker = match[1].trim();
+			const spoken = match[2].trim();
+			if (spoken) {
+				rawTurns.push({
+					speaker,
+					voiceModel: mapSpeakerNameToVoice(speaker, defaultVoice),
+					text: spoken
+				});
+			}
+		} else {
+			rawTurns.push({
+				speaker: 'NARRATOR',
+				voiceModel: defaultVoice,
+				text: para
+			});
+		}
+	}
+
+	if (!hasAnyCue) {
+		return [{ speaker: 'NARRATOR', voiceModel: defaultVoice, text: scriptText.trim() }];
+	}
+
+	// Merge consecutive turns sharing the exact same voiceModel to minimize API round-trips
+	const merged: DialogueTurn[] = [];
+	for (const turn of rawTurns) {
+		const prev = merged[merged.length - 1];
+		if (prev && prev.voiceModel === turn.voiceModel) {
+			prev.text = `${prev.text}\n\n${turn.text}`;
+		} else {
+			merged.push({ ...turn });
+		}
+	}
+	return merged;
 }
 
 /**
@@ -33,7 +158,10 @@ export function splitScriptIntoChunks(text: string, maxChars = MAX_CHUNK_CHARS):
 	if (!raw) return [];
 	if (raw.length <= maxChars) return [raw];
 
-	const paragraphs = raw.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+	const paragraphs = raw
+		.split(/\n\s*\n/)
+		.map((p) => p.trim())
+		.filter(Boolean);
 	const chunks: string[] = [];
 	let currentChunk = '';
 
@@ -41,7 +169,6 @@ export function splitScriptIntoChunks(text: string, maxChars = MAX_CHUNK_CHARS):
 		const s = sentence.trim();
 		if (!s) return;
 
-		// If a single sentence exceeds maxChars, split on clauses or word boundaries
 		if (s.length > maxChars) {
 			if (currentChunk) {
 				chunks.push(currentChunk.trim());
@@ -70,11 +197,9 @@ export function splitScriptIntoChunks(text: string, maxChars = MAX_CHUNK_CHARS):
 	};
 
 	for (const para of paragraphs) {
-		// If adding the entire paragraph fits comfortably
 		if ((currentChunk ? `${currentChunk}\n\n${para}` : para).length <= maxChars) {
 			currentChunk = currentChunk ? `${currentChunk}\n\n${para}` : para;
 		} else {
-			// Split paragraph into individual sentences
 			const sentences = para.split(/(?<=[.!?—])\s+/);
 			for (const sent of sentences) {
 				pushSentence(sent);
@@ -132,6 +257,8 @@ async function pMap<T, R>(
 	return results;
 }
 
+class NonRetryableTtsError extends Error {}
+
 async function fetchDeepgramChunk(
 	chunk: string,
 	model: string,
@@ -158,11 +285,18 @@ async function fetchDeepgramChunk(
 				await new Promise((r) => setTimeout(r, 600 * (retryCount + 1)));
 				return fetchDeepgramChunk(chunk, model, apiKey, retryCount + 1);
 			}
-			throw new Error(`Deepgram TTS failed (${res.status}): ${errText.slice(0, 200)}`);
+			const msg = `Deepgram TTS failed (${res.status}): ${errText.slice(0, 200)}`;
+			if (res.status >= 400 && res.status < 500 && res.status !== 429) {
+				throw new NonRetryableTtsError(msg);
+			}
+			throw new Error(msg);
 		}
 
 		return new Uint8Array(await res.arrayBuffer());
 	} catch (err) {
+		if (err instanceof NonRetryableTtsError) {
+			throw err;
+		}
 		if (retryCount < 2) {
 			await new Promise((r) => setTimeout(r, 600 * (retryCount + 1)));
 			return fetchDeepgramChunk(chunk, model, apiKey, retryCount + 1);
@@ -171,9 +305,22 @@ async function fetchDeepgramChunk(
 	}
 }
 
+function concatMp3Buffers(buffers: Uint8Array[]): Uint8Array {
+	if (buffers.length === 0) return new Uint8Array(0);
+	const cleanedBuffers = buffers.map((buf, i) => (i === 0 ? buf : stripId3Header(buf)));
+	const totalLen = cleanedBuffers.reduce((sum, b) => sum + b.length, 0);
+	const merged = new Uint8Array(totalLen);
+	let offset = 0;
+	for (const b of cleanedBuffers) {
+		merged.set(b, offset);
+		offset += b.length;
+	}
+	return merged;
+}
+
 export async function synthesizeDeepgramSpeech(
 	text: string,
-	model = 'aura-2-apollo-en'
+	model = VOICE_APOLLO
 ): Promise<Uint8Array> {
 	const apiKey = env.DEEPGRAM_API_KEY?.trim() || process.env.DEEPGRAM_API_KEY?.trim();
 	if (!apiKey) {
@@ -185,17 +332,35 @@ export async function synthesizeDeepgramSpeech(
 		return new Uint8Array(0);
 	}
 
-	// Synthesize chunks in parallel with concurrency limit
-	const buffers = await pMap(chunks, (chunk) => fetchDeepgramChunk(chunk, model, apiKey), 3);
+	const buffers = await pMap(chunks, (chunk) => fetchDeepgramChunk(chunk, model, apiKey), 5);
+	return concatMp3Buffers(buffers);
+}
 
-	// Concatenate MP3 frames, stripping ID3 header from chunks 1..N
-	const cleanedBuffers = buffers.map((buf, i) => (i === 0 ? buf : stripId3Header(buf)));
-	const totalLen = cleanedBuffers.reduce((sum, b) => sum + b.length, 0);
-	const merged = new Uint8Array(totalLen);
-	let offset = 0;
-	for (const b of cleanedBuffers) {
-		merged.set(b, offset);
-		offset += b.length;
+export async function synthesizeBroadcastScript(
+	scriptText: string,
+	defaultVoice = VOICE_APOLLO
+): Promise<Uint8Array> {
+	const apiKey = env.DEEPGRAM_API_KEY?.trim() || process.env.DEEPGRAM_API_KEY?.trim();
+	if (!apiKey) {
+		throw new Error('DEEPGRAM_API_KEY is not configured');
 	}
-	return merged;
+
+	const turns = parseDialogueTurns(scriptText, defaultVoice);
+	if (turns.length === 0) {
+		return new Uint8Array(0);
+	}
+
+	const items: Array<{ text: string; voiceModel: string }> = [];
+	for (const turn of turns) {
+		for (const chunk of splitScriptIntoChunks(turn.text)) {
+			items.push({ text: chunk, voiceModel: turn.voiceModel });
+		}
+	}
+
+	const buffers = await pMap(
+		items,
+		(item) => fetchDeepgramChunk(item.text, item.voiceModel, apiKey),
+		5
+	);
+	return concatMp3Buffers(buffers);
 }

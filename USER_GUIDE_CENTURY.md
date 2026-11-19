@@ -1,107 +1,67 @@
 # Century Radio — User & Content Guide
 
-Welcome to **Century Radio** (`https://century-radio.vercel.app`), an interactive 1920s vacuum-tube AM radio that broadcasts news, weather, vintage sponsor reads, and 78rpm music from **today's exact calendar date, 100 years ago** (`1926` / `1927`).
+Welcome to **Century Radio** (`https://century-radio.vercel.app`), an interactive 1920s vacuum-tube AM radio broadcasting non-stop news, special reports, multi-voice radio dramas, vintage comedy & vaudeville, market tickers, regional weather, and verified Great 78 Project music from **today's exact calendar date, 100 years ago** (`1926` / `1927`).
 
 ---
 
 ## 1. Using the Radio
 
-### Power & Tube Warm-Up
-- Flip the **Power** switch in the top-right of the receiver faceplate (or press **`P`** on your keyboard).
-- The three vacuum-tube filaments glow up over **2.4 seconds** while the 60 Hz mains hum, shellac crackle, and master gain ease in—just like an authentic 1920s super-heterodyne receiver.
+### Dual Receiver Views (`[V]`)
+Switch live between two authentic interfaces from the top header (or press **`V`**):
+- **Broadcaster’s Desk (Default)**: Compact tactile receiver strip paired with a live AP Wire / Teletype console and an **Editorial Desk** panel containing **Press Clippings** (contemporary newspaper citations & primary sources) and a clickable **Program Guide**.
+- **Lab Receiver**: Full Braun / Teenage Engineering matte-enamel instrument faceplate with CRT green phosphor oscilloscope, ballistic VU meter, inertia/detent vernier dial, Magic Eye carrier lock, and collapsible archival drawers.
 
-### Tuning the AM Band (`550 – 1600 kHz`)
-- **Drag or Scroll**: Drag your pointer across the vernier dial strip (it has real inertia and magnetic station detents) or scroll with your mouse wheel / trackpad.
-- **Accessible Slider & Presets**: Use the range slider below the dial or click any of the **Carrier Presets** (or press keys **`1`** through **`5`**):
-  - **`640 kHz • WCC-MARCONI`**: Chatham Marine Wireless telegraph station transmitting transatlantic continuous-wave (CW) Morse code dispatches.
-  - **`710 kHz • WCRN-AM`**: Main Century Radio historical broadcast (Gemini-written 1926/1927 scripts voiced via multi-character Deepgram Aura-2 cast + Great 78 Project music interludes).
-  - **`870 kHz • WGN-MIDWEST`**: WGN Chicago clear-channel broadcast with Drake Hotel concert orchestra and Midwest news wire dispatches.
-  - **`980 kHz • NAA-TIME`**: U.S. Naval Observatory time-signal pips.
-  - **`1240 kHz • KFOX-78`**: Continuous pre-1927 78rpm ballroom & jazz stream.
-- **Heterodyne Whistle & Static**: Tuning slightly off-carrier produces an authentic AM heterodyne beat whistle that drops to zero-beat as the 4-LED **Magic Eye** lock bar illuminates green.
+### Power & Tube Warm-Up (`[P]`)
+- Flip the **Power** switch (or press **`P`**) to glow up the three vacuum-tube filaments over **2.4 seconds** as the 60 Hz mains hum, shellac crackle, and master gain ease in.
+- On power-on, **Live Sync** automatically tunes into the exact segment and timestamp currently playing on the continuous daily broadcast clock.
 
-### Navigating History & Segments
-- **Century Offset (`-100 Yrs`)**: Use **← Prev** / **Next →** to step day-by-day through the calendar, or toggle **Era** between **`1926`** and **`1927`**.
-- **Segment Pills (`01`–`12`)**: Jump directly between 12 distinct program segments:
-  - `01 · STATION ID`: Formal sign-on (710 kHz / 422.3 meters) and evening schedule preview.
-  - `02 · NEWS BULLETIN`: Lead national & international wire dispatches (multi-paragraph journalistic reporting).
-  - `03 · FEATURE STORY`: In-depth narrative special correspondent report.
-  - `04 · MUSIC INTERLUDE`: Pre-1927 78rpm ballroom/jazz recording with spoken Victrola intro.
-  - `05 · MARKET REPORT`: Wall Street & Curb Exchange ticker with call money and commodities.
-  - `06 · NEWS BULLETIN`: Telegraph wire bulletins & developing dispatches from the week.
-  - `07 · SCIENCE AND AVIATION`: 1920s airmail routes, radio engineering, and modern marvels.
-  - `08 · SPORTS ROUNDUP`: Arena athletics, boxing rings, gridiron, and Broadway lights.
-  - `09 · MUSIC INTERLUDE`: Late evening 78rpm syncopation or blues selection.
-  - `10 · VINTAGE AD`: Authentic 1926 sponsor commercial read (Radiola, Victrola, Ford).
-  - `11 · WEATHER REPORT`: U.S. Weather Bureau regional and Atlantic maritime forecast.
-  - `12 · FIRESIDE EDITORIAL`: Evening sign-off and reflective commentary on the modern century.
-- **Distinct Character Voices**: Segment types feature specialized Deepgram Aura-2 cast personalities:
-  - Lead News, Editorial & Sign-On: `aura-2-apollo-en` (authoritative Mid-Atlantic newsman)
-  - Market Ticker & Sports Desk: `aura-2-orion-en` (brisk, resonant announcer)
-  - Vintage Sponsor Advertisements: `aura-2-asteria-en` (warm, persuasive commercial pitch)
-  - Weather & Aviation/Science: `aura-2-athena-en` (clear, articulate reporter)
-- **Primary Sources**: Below the live broadcast script, click any **Source** link to inspect the original Wikipedia or Library of Congress dispatch.
-- **Dark Mode**: Use the **Dark / Light** toggle in the top-right page header to switch between matte cream enamel and dark anodized slate (your preference is saved automatically).
+### Tuning the AM Band (`550 – 1600 kHz`, Keys `[1–5]`)
+- **Drag, Scroll, Slider, or Presets**:
+  - **`640 kHz • WCC-MARCONI`**: Chatham Marine Wireless telegraph station transmitting real ITU Morse code (~17 WPM) dispatches of today's headlines with a live decoded paper tape monitor.
+  - **`710 kHz • WCRN-AM`**: New York flagship continuous 18-segment broadcast (~50 minutes per cycle) featuring multi-voice radio theatre, variety/comedy hour, Wall Street ticker, exact-day news bulletins, and Great 78 Project music.
+  - **`870 kHz • WGN-MIDWEST`**: Chicago clear-channel station (Tribune Tower / Drake Hotel) with its own Midwest programming: Chicago Board of Trade grain & livestock ticker, Great Lakes Weather Bureau dispatch, Midwest sports, and regional sponsor reads.
+  - **`980 kHz • NAA-TIME`**: Arlington U.S. Naval Observatory standard 1 Hz time-signal chronometer aligned to real UTC second ticks.
+  - **`1240 kHz • KFOX-78`**: Non-stop, 24/7 Great 78 Project 78rpm jukebox cycling through 60+ verified 1919–1927 jazz, blues, ballroom, classical, and vaudeville recordings.
+
+### Navigating History & Programs
+- **Date Picker & Century Offset**: Step day-by-day (**← Prev** / **Next →**), jump directly to any date in `1926–1927` via the calendar input, switch between **1926** and **1927**, or pick curated historic landmark broadcasts.
+- **18-Segment Continuous Continuity**: Station Sign-On, Lead National & World Wire, Ballroom Interlude, Special Correspondent Feature, Sponsor Read #1, 1920s Variety & Comedy Hour (with spoken host intro + real vaudeville 78rpm record), Financial Ticker, Hot Jazz Interlude, Developing Telegraph Wire, Science & Aviation, Sponsor Read #2, Multi-Voice Mystery Playhouse Radio Drama, Concert Hall Orchestra Remote, Seasonal Sports & Stage Review, In Memoriam / Telegraph Notices, Midnight Blues Interlude, Seasonal Weather Bureau Forecast, and Fireside Sign-Off.
 
 ---
 
-## 2. How to Make Century Radio Even More Content-Rich
+## 2. Historical & Content Pipeline Architecture
 
-### A. Adding New Historical Content Sources
-All historical ingestion lives in `src/lib/server/history/`:
-1. **Create a new source adapter** (e.g., `src/lib/server/history/nyTimesArchive.ts` or a sports/weather/aviation RSS/JSON feed) that returns `IngestedFact[]` (matching the interface in `src/lib/server/history/wikimedia.ts`):
-   ```typescript
-   export interface IngestedFact {
-     kind: 'event' | 'birth' | 'death' | 'newspaper';
-     year: number;
-     date: string; // "YYYY-MM-DD"
-     text: string;
-     source: {
-       provider: 'wikipedia' | 'chronicling_america' | 'curated_archive';
-       title: string;
-       url?: string;
-       originalDate: string;
-     };
-   }
-   ```
-2. **Register it in `src/lib/server/history/ingest.ts`**:
-   Add your fetcher to the `Promise.all([...])` call inside `ingestHistoricalFacts(isoDate)`. Gemini will automatically weave those new facts into the broadcast script and attach their citations.
+### A. Exact-Day Historical Ingestion (`src/lib/server/history/`)
+- **`wikiChronicle.ts`**: Fetches exact `Month_Year` Wikipedia day-by-day chronicles (`November_1926`, etc.), parses exact-day events, deaths, births, developing wire items (`day - 1`, `day - 2`), extracts contemporary `<ref>{{cite news}}</ref>` press clippings, and enriches linked entities via the Wikipedia REST Page Summary API.
+- **`wikiYearContext.ts`**: Pulls same-month radio and national milestones from `${Year}_in_radio` and `${Year}_in_the_United_States`.
+- **`wikimedia.ts`**: Supplements with Wikimedia On This Day events, births, and deaths.
+- **`periodContext.ts` & `vintageChronicles.ts`**: Curated historical backstop when live APIs return sparse items.
 
-### B. Expanding the 78rpm Music Catalog (Internet Archive)
-Music interludes and `KFOX-78` pull from `src/lib/data/music-catalog.json` (filtered strictly to `year <= targetYear`).
-- **Refresh automatically from Internet Archive's Great 78 Project**:
+### B. Verified Great 78 Project Catalog (`src/lib/data/music-catalog.json`)
+- Refreshed via:
   ```bash
   node --experimental-strip-types scripts/index-78rpm.ts
   ```
-- **Or add tracks manually** to `src/lib/data/music-catalog.json`:
-  ```json
-  {
-    "identifier": "<internet-archive-item-id>",
-    "title": "Song Title",
-    "creator": "Orchestra or Artist",
-    "year": 1926,
-    "durationSec": 180,
-    "moodTags": ["jazz", "upbeat"]
-  }
-  ```
-  Supported `moodTags`: `"urgent"`, `"solemn"`, `"upbeat"`, `"jazz"`, `"fireside"`.
+- Every entry stores an exact verified `identifier`, `mp3File` derivative path, `durationSec`, `year` (`<= 1927`), `moodTags`, and `category` (`jazz`, `blues`, `ballroom`, `classical`, `comedy`).
+- Streamed continuously via `/api/archive-audio?id=...` and sequenced for `KFOX-78` via `/api/music-stream`.
 
-### C. Customizing the Broadcast Format & Announcer Voice
-- **Script Style & Segment Mix**: Edit the Gemini prompt and `responseSchema` in `src/lib/server/llm/scriptGenerator.ts` (for example, to add a dedicated **Stock Market / Curb Exchange Report**, **Sports Scores**, or **Fireside Editorial**).
-- **Deepgram Voice Model**: Change the default `model` parameter (`aura-2-apollo-en`) in `src/lib/server/tts/deepgram.ts` and `scriptGenerator.ts` to experiment with different Deepgram Aura-2 voices—or even assign distinct voices per segment type (e.g., one voice for news anchors, another for sponsor ads).
-
-### D. Adding More AM Stations on the Dial
-Edit `DEFAULT_STATIONS` in `src/lib/physics/dialPhysics.ts` to add new frequencies between `550` and `1600 kHz` (e.g., regional stations like Chicago or London) and handle their `programMode` in `src/lib/state/radioStore.svelte.ts`.
+### C. Multi-Voice Script & Deepgram Aura-2 TTS (`src/lib/server/llm/` & `src/lib/server/tts/`)
+- **`scriptGenerator.ts`**: Uses DeepSeek-V4.1-Flash (`deepseek-flash` via `DEEPSEEK_API_KEY`) as primary continuity scriptwriter, automatically falling back to Gemini Interactions (`gemini-3.8-flash` via `@google/genai`) and then the 18-segment deterministic `periodContentLibrary.ts` generator (16 authentic 1920s sponsors, 4 seasonal/regional weather generators, NYSE vs Chicago Board of Trade market desks, and multi-voice radio dramas). Set `LLM_PRIMARY_PROVIDER=gemini` to make Gemini primary with DeepSeek as fallback once `GEMINI_API_KEY` is topped up.
+- **`deepgram.ts`**: Maps character roles (`ANNOUNCER`, `CLARA`, `INSPECTOR`, `REPORTER`, etc.) and segment genres across `aura-2-apollo-en`, `aura-2-orion-en`, `aura-2-asteria-en`, and `aura-2-athena-en`, automatically stitching multi-turn dialogues cleanly.
 
 ---
 
-## 3. Local Development & Redeployment
+## 3. Local Development, Testing & Redeployment
 
+- **Install dependencies**:
+  ```bash
+  npm install
+  ```
 - **Run locally**:
   ```bash
   npm run dev
   ```
-- **Typecheck, tests, and production build**:
+- **Typecheck, unit tests, and production build**:
   ```bash
   npm run check && npm test && npm run build
   ```
@@ -109,4 +69,8 @@ Edit `DEFAULT_STATIONS` in `src/lib/physics/dialPhysics.ts` to add new frequenci
   ```bash
   npx vercel --prod
   ```
-- **Optional Production Caching**: Set `BLOB_READ_WRITE_TOKEN` in Vercel to persist generated `BroadcastDay` JSON and Deepgram MP3s in Vercel Blob across serverless cold starts, and set `CRON_SECRET` to protect `/api/cron/daily`.
+- **Environment Variables**:
+  - `DEEPGRAM_API_KEY`: Enables live multi-voice Deepgram Aura-2 TTS on `/api/tts`.
+  - `DEEPSEEK_API_KEY` (and optional `DEEPSEEK_MODEL=deepseek-flash`): Enables DeepSeek-V4.1-Flash primary continuity scripting.
+  - `GEMINI_API_KEY`: Enables Gemini `gemini-3.8-flash` Interactions API scripting (set `LLM_PRIMARY_PROVIDER=gemini` to prioritize Gemini over DeepSeek; otherwise Gemini acts as automatic fallback).
+  - `BLOB_READ_WRITE_TOKEN` & `CRON_SECRET`: Optional production Vercel Blob caching & daily cron prewarming (`/api/cron/daily`).

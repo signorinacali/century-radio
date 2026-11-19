@@ -16,13 +16,20 @@ export const GET: RequestHandler = async ({ request }) => {
 	const todayCentury = computeCenturyDate(0, 100);
 	const tomorrowCentury = computeCenturyDate(1, 100);
 
-	const [todayDay, tomorrowDay] = await Promise.all([
-		getOrCreateBroadcastDay(todayCentury),
-		getOrCreateBroadcastDay(tomorrowCentury)
+	const [todayWcrn, todayWgn, tomorrowWcrn, tomorrowWgn] = await Promise.all([
+		getOrCreateBroadcastDay(todayCentury, 'wcrn'),
+		getOrCreateBroadcastDay(todayCentury, 'wgn'),
+		getOrCreateBroadcastDay(tomorrowCentury, 'wcrn'),
+		getOrCreateBroadcastDay(tomorrowCentury, 'wgn')
 	]);
 
 	return json({
 		ok: true,
-		prewarmed: [todayDay.id, tomorrowDay.id]
+		prewarmed: [
+			`${todayWcrn.stationId}:${todayWcrn.id}`,
+			`${todayWgn.stationId}:${todayWgn.id}`,
+			`${tomorrowWcrn.stationId}:${tomorrowWcrn.id}`,
+			`${tomorrowWgn.stationId}:${tomorrowWgn.id}`
+		]
 	});
 };

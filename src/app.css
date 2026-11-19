@@ -16,11 +16,14 @@
 	--cr-well: light-dark(#e7e1d4, #171512);
 	--cr-dial-face: light-dark(#faf7f0, #12110f);
 	--cr-card: light-dark(rgba(255, 255, 255, 0.72), rgba(34, 31, 27, 0.85));
+	--cr-newsprint: light-dark(#fbf8f1, #191714);
 	--cr-border: light-dark(#cfc7b8, #38332d);
 	--cr-text: light-dark(#1c1917, #f2ede4);
-	--cr-muted: light-dark(#6b6459, #a39b8e);
+	--cr-muted: light-dark(#5c554b, #a89f92);
 	--cr-accent: light-dark(#d95d1e, #f07132);
 	--cr-track: light-dark(#cfc9bd, #3a352f);
+	--cr-scrollbar-thumb: light-dark(#7d7468, #8c8376);
+	--cr-scrollbar-track: light-dark(#ebe5d8, #1d1b18);
 	--focus-ring-color: var(--cr-accent);
 }
 
@@ -162,6 +165,190 @@ input[type="checkbox"][switch].century-switch {
 input[type="checkbox"][switch].century-switch:focus-visible {
 	outline: 3px solid var(--focus-ring-color);
 	outline-offset: 4px;
+}
+
+/* Styled native <progress> bar (modern-web-guidance: progress) */
+progress.century-progress {
+	--progress-bar-radius: 999px;
+	--progress-bar-track: var(--cr-track);
+	--progress-bar-fill: var(--cr-accent);
+	--progress-bar-indeterminate-size: 30%;
+	--progress-bar-indeterminate-animation-duration: 1.5s;
+
+	appearance: none;
+	border: 0 solid;
+	overflow: clip;
+	container-type: inline-size;
+	display: block;
+	inline-size: 100%;
+	block-size: 0.42rem;
+	border-radius: var(--progress-bar-radius);
+	background: var(--progress-bar-track);
+	box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.12);
+
+	@media (prefers-reduced-motion: reduce) {
+		--progress-bar-indeterminate-animation-duration: 10s;
+	}
+}
+
+progress.century-progress::-webkit-progress-bar {
+	background: transparent;
+}
+
+progress.century-progress::-webkit-progress-value {
+	background: var(--progress-bar-fill);
+	border-radius: var(--progress-bar-radius);
+	transition: inline-size 0.2s linear;
+	animation: var(--progress-bar-animation, revert-rule);
+}
+
+progress.century-progress::-moz-progress-bar {
+	background: var(--progress-bar-fill);
+	border-radius: var(--progress-bar-radius);
+	transition: inline-size 0.2s linear;
+	animation: var(--progress-bar-animation, revert-rule);
+}
+
+progress.century-progress:indeterminate {
+	--progress-bar-animation: progress-bar-indeterminate
+		var(--progress-bar-indeterminate-animation-duration) infinite linear;
+}
+
+progress.century-progress:dir(rtl):indeterminate {
+	--progress-bar-animation: progress-bar-indeterminate
+		var(--progress-bar-indeterminate-animation-duration) infinite linear reverse;
+}
+
+@keyframes progress-bar-indeterminate {
+	from,
+	to {
+		inline-size: var(--progress-bar-indeterminate-size);
+		margin-right: auto;
+	}
+	from {
+		translate: -100%;
+	}
+	to {
+		translate: 100cqi;
+	}
+}
+
+/* Accessible Tabs (modern-web-guidance: tabs) */
+.century-tablist {
+	display: flex;
+	overflow-x: auto;
+	gap: 0.25rem;
+	border-bottom: 1px solid var(--cr-border);
+	scrollbar-width: none;
+}
+
+.century-tablist [role="tab"] {
+	position: relative;
+	flex: none;
+	padding: 0.65rem 0.9rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	color: var(--cr-muted);
+	cursor: pointer;
+}
+
+.century-tablist [role="tab"]:hover {
+	color: var(--cr-text);
+}
+
+.century-tablist [role="tab"][aria-selected="true"] {
+	color: var(--cr-accent);
+}
+
+.century-tablist [role="tab"][aria-selected="true"]::after {
+	content: "";
+	position: absolute;
+	inset: auto 0 0;
+	border-block-end: 3px solid var(--cr-accent);
+}
+
+.century-tablist [role="tab"]:focus-visible {
+	outline: 2px solid var(--focus-ring-color);
+	outline-offset: -2px;
+}
+
+/* Native <details> Accordion (modern-web-guidance: accordion) */
+details.century-accordion-item summary {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	cursor: pointer;
+}
+
+details.century-accordion-item summary::-webkit-details-marker {
+	display: none;
+}
+
+details.century-accordion-item summary::before {
+	content: "";
+	inline-size: 0.85em;
+	block-size: 0.85em;
+	flex-shrink: 0;
+	background-color: currentColor;
+	clip-path: polygon(15% 25%, 50% 70%, 85% 25%, 95% 35%, 50% 85%, 5% 35%);
+	rotate: -90deg;
+}
+
+details.century-accordion-item[open] > summary::before {
+	rotate: 0deg;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	details.century-accordion-item summary::before {
+		transition: rotate 0.2s ease;
+	}
+}
+
+details.century-accordion-item::details-content {
+	interpolate-size: allow-keywords;
+	overflow: clip;
+	contain: layout;
+}
+
+details.century-accordion-item:not([open])::details-content {
+	block-size: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	details.century-accordion-item::details-content {
+		transition: block-size, content-visibility, display;
+		transition-duration: 0.26s;
+		transition-timing-function: ease-in-out;
+		transition-behavior: allow-discrete;
+	}
+}
+
+/* Custom Scrollbar (modern-web-guidance: customize-scrollbar-color-and-thickness) */
+.century-scroll {
+	scrollbar-color: var(--cr-scrollbar-thumb) var(--cr-scrollbar-track);
+	scrollbar-width: thin;
+}
+
+@supports not (scrollbar-color: auto) {
+	.century-scroll {
+		scrollbar-width: auto;
+	}
+
+	.century-scroll::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
+
+	.century-scroll::-webkit-scrollbar-thumb {
+		background: var(--cr-scrollbar-thumb);
+		border-radius: 999px;
+	}
+
+	.century-scroll::-webkit-scrollbar-track {
+		background: var(--cr-scrollbar-track);
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {

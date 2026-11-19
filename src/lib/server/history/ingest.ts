@@ -1,6 +1,7 @@
-import { fetchChroniclingAmerica } from './chroniclingAmerica';
 import { fetchPeriodContext } from './periodContext';
 import { fetchVintageChronicles } from './vintageChronicles';
+import { fetchWikiChronicle } from './wikiChronicle';
+import { fetchWikiYearContext } from './wikiYearContext';
 import { fetchWikimediaOnThisDay, type IngestedFact } from './wikimedia';
 
 export function offsetIsoDate(isoDate: string, daysDelta: number): string {
@@ -109,64 +110,68 @@ const CURATED_1920S_BACKSTOP: IngestedFact[] = [
 ];
 
 export async function ingestHistoricalFacts(isoDate: string): Promise<IngestedFact[]> {
-	const prevDate1 = offsetIsoDate(isoDate, -1);
-	const prevDate2 = offsetIsoDate(isoDate, -2);
-
-	// Concurrent fetch: Target Date feeds + Rolling Preceding Days feeds
-	const [targetWiki, targetLoc, targetPeriod, targetVintage, prev1Wiki, prev2Wiki] =
-		await Promise.all([
-			fetchWikimediaOnThisDay(isoDate).catch(() => []),
-			fetchChroniclingAmerica(isoDate).catch(() => []),
-			fetchPeriodContext(isoDate).catch(() => []),
-			fetchVintageChronicles(isoDate).catch(() => []),
-			fetchWikimediaOnThisDay(prevDate1).catch(() => []),
-			fetchWikimediaOnThisDay(prevDate2).catch(() => [])
-		]);
+	const [chronicleFacts, onThisDayFacts, yearContextFacts] = await Promise.all([
+		fetchWikiChronicle(isoDate).catch(() => []),
+		fetchWikimediaOnThisDay(isoDate).catch(() => []),
+		fetchWikiYearContext(isoDate).catch(() => [])
+	]);
 
 	const seenTexts = new Set<string>();
 	const result: IngestedFact[] = [];
 
-	const addFact = (f: IngestedFact, isDeveloping = false) => {
+	const addFact = (f: IngestedFact) => {
 		const norm = f.text.trim().toLowerCase().slice(0, 80);
-		if (!seenTexts.has(norm)) {
-			seenTexts.add(norm);
-			if (isDeveloping) {
-				result.push({
-					...f,
-					category: 'developing_wire',
-					detailedContext: f.detailedContext
-						? `[Developing wire from ${f.date}]: ${f.detailedContext}`
-						: `[Continuing coverage from ${f.date}]`
-				});
-			} else {
-				result.push(f);
-			}
-		}
+		if (!norm || seenTexts.has(norm)) return;
+		seenTexts.add(norm);
+		result.push(f);
 	};
 
-	// 1. Primary Target Date dispatches
-	for (const f of targetWiki) addFact(f);
-	for (const f of targetLoc) addFact(f);
-	for (const f of targetPeriod) addFact(f);
-	for (const f of targetVintage) addFact(f);
-
-	// 2. Rolling window preceding days (developing wire stories)
-	for (const f of prev1Wiki.slice(0, 3)) addFact(f, true);
-	for (const f of prev2Wiki.slice(0, 2)) addFact(f, true);
-
-	if (result.length >= 6) {
-		return result.slice(0, 16);
+	// 1. Exact-day chronicle events and deaths first (highest historical specificity)
+	for (const f of chronicleFacts.filter((x) => x.category !== 'developing_wire' && (x.kind === 'event' || x.kind === 'death'))) {
+		addFact(f);
 	}
 
-	// 3. Fallback to backstop if sparse
-	const year = Number(isoDate.slice(0, 4)) || 1926;
-	for (const item of CURATED_1920S_BACKSTOP) {
-		addFact({
-			...item,
-			year,
-			date: isoDate
-		});
+	// 2. Exact-day Wikimedia On This Day matches
+	for (const f of onThisDayFacts.filter((x) => x.kind === 'event' || x.kind === 'death')) {
+		addFact(f);
 	}
 
-	return result;
+	// 3. Exact-day births & chronicle developing wire (day - 1, day - 2)
+	for (const f of chronicleFacts.filter((x) => x.category === 'developing_wire')) {
+		addFact(f);
+	}
+	for (const f of chronicleFacts.filter((x) => x.kind === 'birth')) {
+		addFact(f);
+	}
+	for (const f of onThisDayFacts.filter((x) => x.kind === 'birth')) {
+		addFact(f);
+	}
+
+	// 4. Same-month year context (Year_in_radio & Year_in_the_United_States)
+	for (const f of yearContextFacts) {
+		addFact(f);
+	}
+
+	// 5. Only supplement from curated period context / chronicles / backstop if fewer than 8 live facts
+	if (result.length < 8) {
+		const [targetPeriod, targetVintage] = await Promise.all([
+			fetchPeriodContext(isoDate).catch(() => []),
+			fetchVintageChronicles(isoDate).catch(() => [])
+		]);
+		for (const f of targetPeriod) addFact(f);
+		for (const f of targetVintage) addFact(f);
+	}
+
+	if (result.length < 8) {
+		const year = Number(isoDate.slice(0, 4)) || 1926;
+		for (const item of CURATED_1920S_BACKSTOP) {
+			addFact({
+				...item,
+				year,
+				date: isoDate
+			});
+		}
+	}
+
+	return result.slice(0, 22);
 }

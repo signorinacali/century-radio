@@ -2,7 +2,9 @@
 	import { formatCenturyDateLong } from '$lib/data/sampleBroadcast';
 	import { AM_MAX_KHZ, AM_MIN_KHZ } from '$lib/physics/dialPhysics';
 	import { radio } from '$lib/state/radioStore.svelte';
+	import { formatClockSec, LANDMARK_DATES } from '$lib/utils/formatters';
 	import AnalogVuMeter from './AnalogVuMeter.svelte';
+	import LiveConsolePanel from './LiveConsolePanel.svelte';
 	import PhosphorOscilloscope from './PhosphorOscilloscope.svelte';
 
 	let lastPointerX = 0;
@@ -11,10 +13,6 @@
 
 	const dialPercent = $derived(
 		((radio.frequencyKHz - AM_MIN_KHZ) / (AM_MAX_KHZ - AM_MIN_KHZ)) * 100
-	);
-
-	const segProgressPct = $derived(
-		Math.min(100, (radio.segmentElapsedSec / Math.max(1, radio.currentSegment.durationSec)) * 100)
 	);
 
 	function onVernierPointerDown(e: PointerEvent) {
@@ -48,32 +46,11 @@
 		const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
 		radio.applyDialImpulse(delta * 0.65);
 	}
-
-	function handleKeydown(e: KeyboardEvent) {
-		const target = e.target as HTMLElement | null;
-		if (target && ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'].includes(target.tagName)) {
-			return;
-		}
-		if (e.key === 'p' || e.key === 'P') {
-			void radio.togglePower();
-		} else {
-			const digit = parseInt(e.key, 10);
-			if (!Number.isNaN(digit) && digit >= 1 && digit <= radio.stations.length) {
-				const st = radio.stations[digit - 1];
-				if (st) radio.tuneToStation(st);
-			}
-		}
-	}
 </script>
-
-<svelte:window
-	onkeydown={handleKeydown}
-	onpointerdown={() => void radio.audio.ensureUnlocked()}
-/>
 
 <section
 	aria-label="Braun Lab Instrument Receiver"
-	class="relative mx-auto max-w-4xl rounded-3xl border border-[var(--cr-border)] bg-[var(--cr-chassis)] p-6 text-[var(--cr-text)] shadow-2xl sm:p-8"
+	class="relative mx-auto max-w-5xl rounded-3xl border border-[var(--cr-border)] bg-[var(--cr-chassis)] p-6 text-[var(--cr-text)] shadow-2xl sm:p-8"
 >
 	<!-- Decorative Hardware Corner Screws -->
 	{#each ['left-3.5 top-3.5', 'right-3.5 top-3.5', 'left-3.5 bottom-3.5', 'right-3.5 bottom-3.5'] as pos}
@@ -85,14 +62,6 @@
 		</span>
 	{/each}
 
-	<!-- Accessible Live Status Announcement -->
-	<div class="visually-hidden" aria-live="polite" aria-atomic="true">
-		{#if radio.power === 'ON'}
-			{radio.signalLock.nearestStation
-				? `Tuned to ${radio.signalLock.nearestStation.callsign} at ${Math.round(radio.frequencyKHz)} kilohertz, ${radio.broadcastDay.id}`
-				: `Static at ${Math.round(radio.frequencyKHz)} kilohertz`}
-		{/if}
-	</div>
 	<!-- Top Instrument Header -->
 	<div class="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--cr-border)] pb-5">
 		<div>
@@ -108,7 +77,7 @@
 						: 'none'};"
 				></span>
 				<span class="font-mono text-xs tracking-[0.18em] text-[var(--cr-muted)] uppercase">
-					Model CR-26 • {radio.broadcastDay.stationCallsign} ({radio.broadcastDay.stationLocation})
+					Model CR-26 • {radio.signalLock.nearestStation?.callsign ?? radio.broadcastDay.stationCallsign} ({radio.broadcastDay.stationLocation})
 				</span>
 			</div>
 			<h2 class="mt-1 text-2xl font-semibold tracking-tight">
@@ -180,12 +149,7 @@
 				<span class="font-mono text-xs tracking-widest text-[var(--cr-muted)] uppercase">
 					AM Broadcast Band
 				</span>
-				<!-- Magic Eye Carrier Lock Bar -->
-				<div
-					class="hidden items-center gap-1 sm:flex"
-					title="Carrier signal lock"
-					aria-hidden="true"
-				>
+				<div class="hidden items-center gap-1 sm:flex" title="Carrier signal lock" aria-hidden="true">
 					{#each [0.2, 0.45, 0.7, 0.9] as thresh}
 						<span
 							class="h-1.5 w-3 rounded-full transition-colors duration-150"
@@ -257,7 +221,7 @@
 	<div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 		<div class="rounded-xl border border-[var(--cr-border)] bg-[var(--cr-panel)] p-3.5">
 			<div class="mb-2 font-mono text-[11px] font-semibold tracking-wider text-[var(--cr-muted)] uppercase">
-				Carrier Presets
+				Carrier Presets (Keys 1–5)
 			</div>
 			<div class="flex flex-wrap gap-2">
 				{#each radio.stations as station}
@@ -304,7 +268,7 @@
 
 		<div class="rounded-xl border border-[var(--cr-border)] bg-[var(--cr-panel)] p-3.5">
 			<div class="mb-2 flex items-center justify-between font-mono text-[11px] font-semibold tracking-wider text-[var(--cr-muted)] uppercase">
-				<span>Century Offset (-100 Yrs)</span>
+				<span>Century Calendar</span>
 				{#if radio.isLoadingBroadcast}
 					<span class="text-[var(--cr-accent)]">Tuning Wire…</span>
 				{/if}
@@ -313,29 +277,37 @@
 				<button
 					type="button"
 					onclick={() => radio.shiftDay(-1)}
-					class="rounded-lg border border-[var(--cr-border)] bg-[var(--cr-dial-face)] px-3 py-1.5 font-mono text-xs font-semibold hover:border-[var(--cr-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cr-accent)]"
+					class="rounded-lg border border-[var(--cr-border)] bg-[var(--cr-dial-face)] px-2.5 py-1.5 font-mono text-xs font-semibold hover:border-[var(--cr-accent)]"
 				>
 					← Prev
 				</button>
-				<span class="font-mono text-xs font-bold">{radio.broadcastDay.id}</span>
+				<label for="braun-date-picker" class="visually-hidden">Broadcast Date (1926–1927)</label>
+				<input
+					id="braun-date-picker"
+					type="date"
+					min="1926-01-01"
+					max="1927-12-31"
+					value={radio.broadcastDay.id}
+					onchange={(e) => radio.setExactDate((e.currentTarget as HTMLInputElement).value)}
+					class="rounded-lg border border-[var(--cr-border)] bg-[var(--cr-dial-face)] px-2 py-1 font-mono text-xs font-bold text-[var(--cr-text)]"
+				/>
 				<button
 					type="button"
 					onclick={() => radio.shiftDay(1)}
-					class="rounded-lg border border-[var(--cr-border)] bg-[var(--cr-dial-face)] px-3 py-1.5 font-mono text-xs font-semibold hover:border-[var(--cr-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cr-accent)]"
+					class="rounded-lg border border-[var(--cr-border)] bg-[var(--cr-dial-face)] px-2.5 py-1.5 font-mono text-xs font-semibold hover:border-[var(--cr-accent)]"
 				>
 					Next →
 				</button>
 			</div>
-			<div class="mt-2.5 flex items-center justify-between gap-2 font-mono text-[11px]">
-				<span class="text-[var(--cr-muted)]">Era:</span>
-				<div class="flex gap-1.5">
+			<div class="mt-2.5 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px]">
+				<div class="flex items-center gap-1.5">
+					<span class="text-[var(--cr-muted)]">Era:</span>
 					{#each [100, 99] as offset}
 						<button
 							type="button"
 							aria-pressed={radio.yearOffset === offset}
 							onclick={() => radio.setYearOffset(offset)}
-							class="rounded border px-2 py-0.5 transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cr-accent)] {radio.yearOffset ===
-							offset
+							class="rounded border px-2 py-0.5 transition {radio.yearOffset === offset
 								? 'border-[var(--cr-accent)] bg-[var(--cr-accent)] text-white'
 								: 'border-[var(--cr-border)] bg-[var(--cr-dial-face)] text-[var(--cr-text)]'}"
 						>
@@ -343,62 +315,86 @@
 						</button>
 					{/each}
 				</div>
+				<select
+					aria-label="Jump to Landmark 1926–1927 Date"
+					onchange={(e) => {
+						const v = (e.currentTarget as HTMLSelectElement).value;
+						if (v) radio.setExactDate(v);
+					}}
+					class="max-w-36 rounded border border-[var(--cr-border)] bg-[var(--cr-dial-face)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--cr-text)]"
+				>
+					<option value="">Historic Dates…</option>
+					{#each LANDMARK_DATES as lm}
+						<option value={lm.iso} selected={lm.iso === radio.broadcastDay.id}>{lm.label}</option>
+					{/each}
+				</select>
 			</div>
 		</div>
 	</div>
 
-	<!-- Segment Selector & Live Broadcast Script + Sources -->
-	<div class="mt-5 rounded-2xl border border-[var(--cr-border)] bg-[var(--cr-card)] p-4">
-		<div class="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--cr-border)] pb-3">
-			<div class="flex flex-wrap gap-1.5" role="group" aria-label="Broadcast Segments">
+	<!-- Station-Aware Live Program Surface -->
+	<div class="mt-5">
+		<LiveConsolePanel variant="lab" />
+	</div>
+
+	<!-- Collapsible Archival Clippings & Full Schedule Drawer -->
+	<div class="mt-4 space-y-2.5">
+		<details class="century-accordion-item rounded-2xl border border-[var(--cr-border)] bg-[var(--cr-panel)] px-4 py-3">
+			<summary class="font-mono text-xs font-bold tracking-wider uppercase">
+				<span>Archival Press Clippings &amp; Sources ({radio.broadcastDay.clippings.length})</span>
+			</summary>
+			<div class="century-scroll mt-3 max-h-72 space-y-2.5 overflow-y-auto pr-1">
+				{#each radio.broadcastDay.clippings as clip}
+					<article class="rounded-xl border border-[var(--cr-border)] bg-[var(--cr-dial-face)] p-3 text-xs">
+						<div class="flex items-center justify-between gap-2 font-mono text-[10px] text-[var(--cr-muted)] uppercase">
+							<span>{clip.masthead}</span>
+							<span>{clip.date}</span>
+						</div>
+						<h4 class="mt-1 font-semibold text-[var(--cr-text)]">{clip.headline}</h4>
+						<p class="mt-1 leading-relaxed text-[var(--cr-muted)]">{clip.summary}</p>
+						{#if clip.url}
+							<a
+								href={clip.url}
+								target="_blank"
+								rel="noreferrer"
+								class="mt-1.5 inline-block font-mono text-[11px] text-[var(--cr-accent)] underline underline-offset-2"
+							>
+								Inspect Original Dispatch ↗
+							</a>
+						{/if}
+					</article>
+				{/each}
+			</div>
+		</details>
+
+		<details class="century-accordion-item rounded-2xl border border-[var(--cr-border)] bg-[var(--cr-panel)] px-4 py-3">
+			<summary class="font-mono text-xs font-bold tracking-wider uppercase">
+				<span>Complete Broadcast Program Guide ({radio.broadcastDay.segments.length} Shows • {formatClockSec(radio.broadcastDay.totalDurationSec)})</span>
+			</summary>
+			<div class="century-scroll mt-3 max-h-72 space-y-1.5 overflow-y-auto pr-1">
 				{#each radio.broadcastDay.segments as seg, idx}
-					{@const isCurrent = idx === radio.currentSegmentIndex}
+					{@const active = idx === radio.currentSegmentIndex}
 					<button
 						type="button"
 						onclick={() => radio.selectSegment(idx)}
-						class="rounded-md border px-2 py-1 font-mono text-[11px] font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cr-accent)] {isCurrent
-							? 'border-[var(--cr-accent)] bg-[var(--cr-accent)] text-white'
-							: 'border-[var(--cr-border)] bg-[var(--cr-panel)] text-[var(--cr-muted)] hover:text-[var(--cr-text)]'}"
+						class="flex w-full items-center justify-between gap-3 rounded-xl border px-3 py-2 text-left text-xs transition {active
+							? 'border-[var(--cr-accent)] bg-[var(--cr-accent)]/15'
+							: 'border-[var(--cr-border)] bg-[var(--cr-dial-face)] hover:border-[var(--cr-accent)]'}"
 					>
-						{String(seg.order).padStart(2, '0')} · {seg.type.replace(/_/g, ' ')}
+						<div class="min-w-0 flex-1">
+							<div class="flex items-center gap-2 font-mono text-[10px] text-[var(--cr-muted)]">
+								<span>+{formatClockSec(seg.scheduledOffsetSec)}</span>
+								<span>•</span>
+								<span>{seg.type.replace(/_/g, ' ')}</span>
+							</div>
+							<div class="truncate font-semibold text-[var(--cr-text)]">{seg.title}</div>
+						</div>
+						<span class="shrink-0 font-mono text-[11px] text-[var(--cr-muted)]">
+							{formatClockSec(seg.durationSec)}
+						</span>
 					</button>
 				{/each}
 			</div>
-			<span class="font-mono text-[11px] text-[var(--cr-muted)]">
-				{radio.currentSegment.title}
-			</span>
-		</div>
-
-		<div class="mt-3 h-1 w-full overflow-hidden rounded-full bg-[var(--cr-track)]">
-			<div
-				class="h-full bg-[var(--cr-accent)] transition-all duration-150"
-				style="width: {segProgressPct}%;"
-			></div>
-		</div>
-
-		<p class="mt-3 text-sm leading-relaxed whitespace-pre-line">
-			{radio.currentSegment.scriptText}
-		</p>
-
-		{#if radio.currentSegment.sources.length > 0}
-			<ul class="mt-3 flex flex-wrap gap-x-4 gap-y-1 border-t border-[var(--cr-border)] pt-2.5 font-mono text-[11px] text-[var(--cr-muted)]">
-				{#each radio.currentSegment.sources as src}
-					<li>
-						{#if src.url}
-							<a
-								href={src.url}
-								target="_blank"
-								rel="noreferrer"
-								class="underline decoration-[var(--cr-border)] underline-offset-2 hover:text-[var(--cr-accent)]"
-							>
-								Source: {src.title} ↗
-							</a>
-						{:else}
-							<span>Source: {src.title}</span>
-						{/if}
-					</li>
-				{/each}
-			</ul>
-		{/if}
+		</details>
 	</div>
 </section>
